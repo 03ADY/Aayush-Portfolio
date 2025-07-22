@@ -85,31 +85,31 @@ const playgroundAppsData = [
     {
         title: "AI-Powered Customer Churn Prediction",
         description: "An interactive Streamlit application demonstrating a machine learning model that predicts customer churn, allowing users to input customer data and see real-time predictions.",
-        url: "https://futureml02-jg9jkjmv3xahqnceylr8eu.streamlit.app/",
+        url: "https://ay-churn-ai.streamlit.app/",
         image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/churn2.jpeg"   
     },
     {
         title: "AI-Fueled E-commerce Analytics & Sales Forecasting System",   
         description: "A live Streamlit dashboard providing comprehensive e-commerce analytics, including sales trends, customer segmentation (RFM), and interactive visualizations for business insights.",
-        url: "https://futureml01-j2lihzs8qwk6ombkpeczut.streamlit.app/",
+        url: "https://ecommerce-insight-dashboard.streamlit.app/",
         image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/ecommerce2.jpeg"   
     },
     {
         title: "AI Services Toolkit Pro",   
         description: "Explore a suite of multi-modal AI models, including sentiment analysis, summarization, and image captioning, all served through a user-friendly interface.",   
-        url: "https://ai-toolkit-nj89aumds7l6rpjas7486m.streamlit.app/",   
+        url: "https://ay-ai-toolkit.streamlit.app/",   
         image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit1.jpeg"   
     },
     {
         title: "Hybrid Predictive Maintenance Dashboard",   
         description: "An interactive Streamlit dashboard showcasing real-time predictive maintenance insights, including anomaly detection and remaining useful life (RUL) predictions for industrial equipment.",   
-        url: "https://smart-predictive-maintenance-en77oylapplyfegbhuzf3fy.streamlit.app/Live_Dashboard",
+        url: "https://smart-hybrid-maintenance.streamlit.app/Live_Dashboard",
         image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/hybrid2.jpeg"   
     },
     {
         title: "AI-Powered Live Trading System",
         description: "An interactive Streamlit application demonstrating a deep learning-based trading system with real-time market data, technical indicators, and robust risk management.",   
-        url: "https://smart-predictive-maintenance-am3fyapk9yqcujd87tjcux.streamlit.app/",   
+        url: "https://ai-powered-trading-bot.streamlit.app/",   
         image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/stocks2.jpeg"   
     }
 ];
