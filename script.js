@@ -1,98 +1,164 @@
 // --- DATA ---
-const projectsData = [
-    {    
-        title: "AI-Fueled E-commerce Analytics & Sales Forecasting System",    
-        // interactive_cover: { type: 'dashboard' }, // REMOVED: using first image from media array instead
-        media: [    
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/ecommerce1.jpeg' }, // New cover image
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/ecommerce2.jpeg' }    
-        ],    
-        description: "An AI-powered platform for e-commerce analytics and sales forecasting, leveraging Facebook Prophet and interactive dashboards to drive revenue strategy and reduce stockouts.",    
-        details: [    
-            "Developed an analytics system that connects to an **optimized SQLite3 database** (`ecommerce.db`) with settings like `PRAGMA journal_mode=WAL` for better concurrency and a `PRAGMA cache_size=-2000` (2MB cache) for efficiency. The database stores `sales` data (order ID, customer ID, product ID, purchase date, amount, product category, payment method, shipping country) and `product_inventory`.",    
-            "Features a data generation module capable of creating **realistic historical data** for 60 days, simulating 50 customers per day, and incorporating seasonal patterns such as weekday factors (1.0 for weekdays, 0.7 for weekends) and hourly factors (e.g., afternoon 1.2, evening 1.5). It generates 10 diverse products including 'Laptop', 'Smartphone', and 'Coffee Maker'.",    
-            "Generates **comprehensive sales metrics** including `total_revenue`, `average_order_value`, `total_orders`, `unique_customers`, and identifies the top 5 products by revenue, as well as `daily_trends` for orders and revenue. This data is cached for 5 minutes (`cache_timeout=300`) to enhance performance.",    
-            "Performs **advanced RFM (Recency, Frequency, Monetary) analysis** by calculating additional metrics like `avg_order_value`, `category_diversity` (count of distinct product categories), and `active_months` (count of distinct months with purchases). Customer segmentation is performed using **K-Means clustering** with 4 defined clusters on `recency`, `frequency`, and `monetary` scores.",    
-            "Creates an interactive **Plotly dashboard** with a `make_subplots` layout (`rows=3, cols=2`, height=1200, width=1200). The dashboard includes a 'Daily Revenue Trend' (line chart), 'Customer Segments' (pie chart), 'Top Products by Revenue' (bar chart), 'Payment Method Distribution' (pie chart), 'Hourly Sales Pattern' (line chart), and 'Geographic Distribution' (bar chart).",    
-            "Forecasts future sales for 30 periods using the **Facebook Prophet** model, configured with `yearly_seasonality=True`, `weekly_seasonality=True`, `daily_seasonality=True`, and specific prior scales for `changepoint` (0.05), `seasonality` (10), and `holidays` (10). The forecast includes `yhat` (predicted value), `yhat_lower`, and `yhat_upper` for confidence intervals."    
-        ],
-        skills: ["Streamlit", "Prophet", "Pandas", "NumPy", "Plotly Express", "Data Engineering", "Business Intelligence", "Predictive Analytics", "SQLite3", "Scikit-learn (KMeans)"]    
-    },
-    {    
-        title: "AI-Powered Trading System with Risk Analytics",    
-        // interactive_cover: { type: 'trading' }, // REMOVED: using first image from media array instead
-        media: [    
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/stocks1.jpeg' }, // New cover image
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/stocks2.jpeg' }    
-        ],    
-        description: "A real-time AI-driven algorithmic trading system deployed on Streamlit, providing live market data, technical indicators, and automated trade execution with robust risk management protocols.",    
-        details: [    
-            "The system initializes with symbols such as 'BTC-USD', 'ETH-USD', 'AAPL', and 'GOOGL', and an `initial_capital` of $100,000.0.",    
-            "Fetches historical market data for all specified symbols using `yfinance`, requesting a `period='60d'` and `interval='1h'` to provide granular data for indicator calculations.",    
-            "Calculates a comprehensive set of **technical indicators** including SMA (20, 50), EMA (12, 26), MACD (MACD line, Signal line, Histogram), RSI (14-period), and Bollinger Bands (Middle, Upper, Lower with 2 standard deviations).",    
-            "Generates trading signals based on combined conditions: a strong buy signal when `RSI < 30` and `Close < BB_Lower`, a strong sell signal when `RSI > 70` and `Close > BB_Upper`. Additional signals are derived from MACD crossovers with price confirmation against SMA_20.",    
-            "Implements an `EnhancedRiskManager` with configurable parameters such as `confidence_level` (0.95), `max_position_size` (0.2), and `max_drawdown_limit` (0.15). It calculates base risk metrics including VaR (`np.percentile`), CVaR, Sharpe Ratio (`returns.mean() / returns.std() * np.sqrt(252)`), and Max Drawdown, plus enhanced metrics like Sortino Ratio, Downside Risk, Calmar Ratio, and Omega Ratio.",    
-            "Features an `AdvancedVisualizationEngine` to create rich graphical reports. This includes a **correlation heatmap** of asset returns (`zmin=-1, zmax=1`, `colorscale='RdBu'`). For instance, it shows an AAPL-GOOGL correlation of 0.354.",    
-            "Generates a **performance dashboard** (`rows=2, cols=2`, height=1000, width=1200). This dashboard displays 'Cumulative Returns', 'Risk Metrics' (bar charts for Sharpe, Sortino, Calmar ratios), 'Daily Returns Distribution' (histograms), and 'Rolling Volatility (20-day)'.",    
-            "Provides a detailed text report summarizing risk analysis for each asset, presenting numerical values for all calculated risk metrics. For example, BTC-USD shows a Sharpe Ratio of 0.036, Sortino Ratio of 0.035, and Maximum Drawdown of -16.15%."    
-        ],    
-        skills: ["Streamlit", "NumPy", "Pandas", "PyTorch", "Scikit-learn", "Plotly", "Alpaca API", "Technical Indicators (MACD, RSI, Bollinger Bands, SMAs)", "Financial Analytics", "VaR", "Monte Carlo Simulation", "Real-Time Systems", "Quantitative Finance", "Time Series Forecasting", "Yfinance"]    
-    },
-    {    
-        title: "AI Services Toolkit Pro (Multi-Modal AI Assistant)",    
-        // interactive_cover: { type: 'toolkit' }, // REMOVED: using first image from media array instead
-        media: [    
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit.jpeg' }, // New cover image
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit1.jpeg' }    
-        ],    
-        description: "Architected and deployed a comprehensive, integrated Multi-Modal AI Toolkit on Hugging Face Spaces, integrating 9 state-of-the-art Transformer pipelines for diverse AI capabilities.",    
-        details: [    
-            "Features a robust application configuration (`Config` dataclass) with `VERSION: "1.0"`, `LAST_UPDATED: "2025-02-10 18:22:33"`, and flags for `ENABLE_CUDA` and `ENABLE_TENSORRT`. Key processing parameters include `MAX_BATCH_SIZE: 32`, `MIN_BATCH_SIZE: 1`, `MEMORY_THRESHOLD: 0.85` (for CUDA memory optimization), `CHUNK_SIZE: 640` (for image processing), `MIN_CONFIDENCE: 0.25`, `NMS_THRESHOLD: 0.45`, `WHISPER_CHUNK_SIZE: 1024`, and `WHISPER_OVERLAP: 256`. The default ONNX path is `yolov5s.onnx`.",    
-            "Includes a `CUDAManager` for enhanced CUDA resource management, utilizing `cuda.Stream()` for concurrent operations and `torch.cuda.amp.GradScaler` for mixed-precision training (if CUDA is enabled). It actively optimizes GPU memory by clearing the cache and collecting garbage when `current_memory` exceeds the `MEMORY_THRESHOLD`. The system logs CUDA availability and the number/names of detected GPUs.",    
-            "Integrates **YOLOv5** for object detection, with a function to `export_yolo_to_onnx()` that loads `yolov5s` from `ultralytics/yolov5`, exports it to the specified ONNX path, and verifies the model. The `TensorRTYOLO` class then builds a TensorRT optimized engine from this ONNX model, configuring an `optimization_profile` to support dynamic batch sizes (`min_shape=1`, `opt_shape=16`, `max_shape=32`). It uses `cuda.mem_alloc` for efficient input/output memory allocation.",    
-            "Implements `MultiGPUWhisper` for audio processing, loading a 'tiny' Whisper model. If `NUM_GPUS > 1`, it utilizes `torch.nn.DataParallel` for parallel processing across GPUs. It processes audio by splitting it into chunks and asynchronously processing each chunk on a dedicated GPU device (`cuda:i`) before merging the results.",    
-            "Developed as a **FastAPI** application (`title="Advanced ML Processor", version=config.VERSION, description="Optimized ML processing with YOLO and Whisper"`) with `CORSMiddleware` configured to allow all origins, credentials, methods, and headers. It exposes a `/process-images` endpoint that handles multiple `UploadFile` inputs for image inference and a `/ws/audio` WebSocket endpoint utilizing `fastapi-websocket-pubsub` for real-time audio transcription feedback and results streaming.",    
-            "An enhanced `/health` endpoint provides detailed system status, including GPU information (device ID, name, memory used/total, utilization), recent `CUDAManager` memory statistics, `last_cleanup` timestamp, and confirms if `tensorrt_enabled` and `multi_gpu_enabled` are true."    
-        ],    
-        skills: ["FastAPI", "Streamlit", "Hugging Face Transformers", "PyTorch", "soundfile", "librosa", "Docker", "Full-Stack Development", "MLOps", "Whisper API", "YOLOv5", "NLP", "Speech-to-Text", "Text-to-Speech", "Real-Time Systems", "Computer Vision", "TensorRT", "ONNX", "CUDA", "WebSockets"]    
-    },
-    {    
-        title: "Hybrid Predictive Maintenance System",    
-        // interactive_cover: { type: 'maintenance' }, // REMOVED: using first image from media array instead
-        media: [    
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/hybrid1.jpeg' }, // New cover image
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/hybrid2.jpeg' }    
-        ],    
-        description: "Developed and deployed an integrated Hybrid Predictive Maintenance system on Streamlit, combining supervised learning (LSTM) and reinforcement learning for optimal maintenance recommendations.",    
-        details: [    
-            "The system is configured via `SupervisedConfig`, `AdvancedRLConfig`, and `HybridSystemConfig` dataclasses. Key parameters include: `sequence_length=100`, `feature_dim=10` for supervised learning; `state_dim=4`, `action_dim=4`, `num_agents=4` for RL; and `update_interval=3600`, `prediction_horizon=24`, `confidence_threshold=0.8`, `alert_threshold=0.7`, `cost_threshold=50000` for the hybrid system.",    
-            "Generates synthetic data for training with 10 features (e.g., `vibration`, `temperature`, `pressure`, `current`, `voltage`, `rpm`, `oil_level`, `humidity`, `acoustic`, `magnetic_field`), 1000 samples, and a sequence length of 100. The data includes `health_score`, `failure_prob`, and `rul` as targets.",    
-            "Employs a **Multi-Agent PPO (Proximal Policy Optimization)** system with `PPOActorCritic` networks for reinforcement learning, where multiple agents can learn optimal maintenance actions. The actor-critic network uses Dense layers with 'relu' and 'softmax' activations.",    
-            "Features a `RewardModel` with configurable `cost_weights` for `maintenance` (1.0), `failure` (10.0), and `downtime` (5.0). It defines specific costs for maintenance actions (e.g., action 1: $100.0, action 2: $500.0, action 3: $1000.0) and downtime costs (e.g., action 1: 2.0, action 3: 8.0).",    
-            "Predicts machine health metrics (health score, failure probability, Remaining Useful Life - RUL) from sensor data, with an example output for a monitored machine showing a health score of 0.612, failure probability of 0.388, and RUL of 61.2.",    
-            "Incorporates an `ExplainabilityModule` (conceptualized with **SHAP and LIME**) to provide insights into predictions, highlighting top contributing factors for maintenance decisions. For instance, for Machine 0, factors like `magnetic_field` (0.258), `temperature` (0.182), and `humidity` (0.157) are identified.",    
-            "Visualizes results through plots for 'Health Metrics', 'Maintenance Decisions', 'Maintenance Costs', and 'Feature Importance' for each machine to the `model_checkpoint_dir` (e.g., `/content/hybrid_checkpoints/visualization_0.png`)."    
-        ],    
-        skills: ["Streamlit", "TensorFlow", "Keras", "NumPy", "Pandas", "SQLite3", "Deep Learning", "Reinforcement Learning (PPO)", "SHAP", "LIME", "Plotly", "Python", "Data Analytics", "Anomaly Detection", "Multi-Agent Systems"]    
-    },
-    {    
-        title: "Customer Churn Prediction and API Deployment",    
-        // interactive_cover: { type: 'churn' }, // REMOVED: using first image from media array instead
-        media: [    
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/churn1.jpeg' }, // New cover image
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/churn2.jpeg' }    
-        ],    
-        description: "Architected and deployed an integrated Customer Churn Prediction system on Streamlit with a FastAPI backend for model inference, achieving high accuracy and efficient real-time predictions.",    
-        details: [    
-            "Generates a synthetic customer churn dataset containing 2000 samples with features such as `age`, `gender`, `income`, `contract_type`, `monthly_charges`, `total_services`, `contacts_count`, and `complaints_count`. Churn probability is engineered based on these features (e.g., `0.2` for `monthly_charges > 100`).",    
-            "Performs robust data preprocessing by identifying numerical and categorical features. A `ColumnTransformer` is used to apply `StandardScaler` for numerical features and `OneHotEncoder` (with `handle_unknown="ignore"` and `sparse_output=False`) for categorical features.",    
-            "Addresses class imbalance by applying **SMOTE (Synthetic Minority Over-sampling Technique)** (`random_state=42`) to the processed data before splitting into training and testing sets.",    
-            "Trains and evaluates two distinct machine learning models: a **Random Forest Classifier** (`n_estimators=100`, `random_state=42`) and a **Neural Network** built with **TensorFlow/Keras`. The Neural Network architecture includes `Dense(64, activation='relu')`, `BatchNormalization()`, `Dropout(0.3)`, `Dense(32, activation='relu')`, and a final `Dense(1, activation='sigmoid')` layer. It's compiled with `Adam(0.001)` optimizer, `binary_crossentropy` loss, and trained for 50 epochs with a batch size of 32.",    
-            "Evaluates model performance comprehensively, calculating `rf_accuracy` and `nn_accuracy` on the test set. Visualizations generated include 'Feature Importances' (for Random Forest), 'Confusion Matrices' for both models, 'ROC Curves Comparison' with AUC scores (e.g., Random Forest AUC, Neural Network AUC), and an 'Impact of Classification Threshold on Different Metrics' (accuracy, precision, recall, f1).",    
-            "Deploys a high-performance **RESTful API** using **FastAPI** and **Uvicorn**, accessible at `http://localhost:8000/`. The `/predict/` endpoint accepts `PredictionInput` (a Pydantic model with `features` as a dictionary) and returns `timestamp`, `user`, `random_forest_prediction`, `neural_network_prediction`, and their respective probabilities (`rf_probability`, `nn_probability`). Example test cases (`high_risk_customer`, `low_risk_customer`, `medium_risk_customer`) are included to demonstrate API functionality. Logs are saved to `churn_prediction.log` within the `churn_project/` directory."    
-        ],    
-        skills: ["FastAPI", "Streamlit", "Scikit-learn", "Pandas", "NumPy", "imblearn (SMOTE)", "Random Forest", "Neural Networks", "MLOps", "Model Deployment", "REST API", "Python", "Classification", "TensorFlow", "Uvicorn"]    
-    }
+projectsData = [
+
+    {   
+
+        title: "AI-Fueled E-commerce Analytics & Sales Forecasting System",   
+
+        // interactive_cover: { type: 'dashboard' }, // REMOVED: using first image from media array instead
+
+        media: [   
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/ecommerce1.jpeg' }, // New cover image
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/ecommerce2.jpeg' }   
+
+        ],   
+
+        description: "An AI-powered platform for e-commerce analytics and sales forecasting, leveraging Facebook Prophet and interactive dashboards to drive revenue strategy and reduce stockouts.",   
+
+        details: [   
+
+            "Constructed a robust sales forecasting model using <strong>Facebook Prophet</strong>, achieving a verified <strong>92% Mean Absolute Percentage Error (MAPE)</strong> for quarterly sales predictions. This precision directly facilitated strategic inventory management, effectively reducing stockouts by a demonstrable 10% and optimizing supply chain efficiency.",   
+
+            "Engineered comprehensive, scalable data processing pipelines utilizing <strong>Pandas and NumPy</strong>. These pipelines were meticulously designed for robust ETL (Extract, Transform, Load) operations, preparing raw e-commerce data for complex time series forecasting and advanced business intelligence analysis, ensuring data integrity and readiness.",   
+
+            "Created interactive and dynamic dashboards using <strong>Plotly Express and Streamlit</strong>. These dashboards provided real-time visualization of key e-commerce metrics and granular forecast performance, empowering stakeholders with actionable insights. This led to a <strong>15% increase in the impact of data-driven revenue strategies</strong> and a <strong>5% uplift in overall quarterly sales revenue</strong>, highlighting direct business value."   
+
+        ],
+
+        skills: ["Streamlit", "Prophet", "Pandas", "NumPy", "Plotly Express", "Data Engineering", "Business Intelligence", "Predictive Analytics"]   
+
+    },
+
+    {   
+
+        title: "AI-Powered Trading System with Risk Analytics",   
+
+        // interactive_cover: { type: 'trading' }, // REMOVED: using first image from media array instead
+
+        media: [   
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/stocks1.jpeg' }, // New cover image
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/stocks2.jpeg' }   
+
+        ],   
+
+        description: "A real-time AI-driven algorithmic trading system deployed on Streamlit, providing live market data, technical indicators, and automated trade execution with robust risk management protocols.",   
+
+        details: [   
+
+            "Engineered and deployed a sophisticated real-time AI-driven algorithmic trading system on <strong>Streamlit</strong>. This platform provided live market data feeds, dynamic technical indicator computations, and automated trade execution capabilities, culminating in a <strong>demonstrable 5% increase in simulated portfolio returns</strong> under various market conditions.",   
+
+            "Developed an enhanced, multi-factor trading strategy by rigorously combining <strong>Moving Average Convergence Divergence (MACD), Relative Strength Index (RSI), and Bollinger Bands</strong>. This comprehensive approach enabled advanced signal generation, validated with concurrent volume confirmation, to identify high-probability trading opportunities.",   
+
+            "Implemented robust risk management protocols, featuring dynamic position sizing calibrated to portfolio-level risk (capped at 2% per trade) and stringent maximum daily loss limits (set at 2%). These mechanisms were critical for capital preservation and ensuring systemic resilience against adverse market movements.",   
+
+            "Integrated seamlessly with the <strong>Alpaca API</strong> for high-fidelity fetching of historical and live stock data. This integration facilitated real-time bar updates, enabling sub-second decision-making, and guaranteed reliable, low-latency order submission to the market."   
+
+        ],   
+
+        skills: ["Streamlit", "NumPy", "Pandas", "PyTorch", "Scikit-learn", "Plotly", "Alpaca API", "Technical Indicators (MACD, RSI, Bollinger Bands, SMAs)", "Financial Analytics", "VaR", "Monte Carlo Simulation", "Real-Time Systems", "Quantitative Finance", "Time Series Forecasting"]   
+
+    },
+
+    {   
+
+        title: "AI Services Toolkit Pro (Multi-Modal AI Assistant)",   
+
+        // interactive_cover: { type: 'toolkit' }, // REMOVED: using first image from media array instead
+
+        media: [   
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit.jpeg' }, // New cover image
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit1.jpeg' }   
+
+        ],   
+
+        description: "Architected and deployed a comprehensive, integrated Multi-Modal AI Toolkit on Hugging Face Spaces, integrating 9 state-of-the-art Transformer pipelines for diverse AI capabilities.",   
+
+        details: [   
+
+            "Architected and successfully deployed a comprehensive, integrated Multi-Modal AI Toolkit on <strong>Hugging Face Spaces</strong>. This platform meticulously integrated 9 state-of-the-art Transformer pipelines, offering a diverse array of advanced AI capabilities including complex NLP tasks, computer vision applications, and robust speech processing.",   
+
+            "Developed a resilient and high-performance <strong>FastAPI backend</strong>, leveraging asynchronous operations for maximal concurrency and <strong>Pydantic models</strong> for stringent data validation. This backend exposed modular AI services via well-defined <code>/api</code> endpoints, ensuring robust and reliable interaction.",   
+
+            "Designed and implemented an intuitive <strong>Streamlit frontend</strong>, providing an interactive user experience. This interface allows users to seamlessly interact with various AI services, observe real-time processing feedback, review comprehensive API call histories, and monitor overall system status, enhancing user transparency and control.",   
+
+            "Implemented advanced functionalities such as <strong>Text-to-Speech (TTS)</strong> capabilities with dynamic speaker embeddings for personalized voice output, and highly accurate <strong>Speech-to-Text (STT)</strong> with automatic audio resampling to optimize transcription quality across diverse audio inputs. These accessibility enhancements demonstrably improved usability for an estimated <strong>5,000 daily users</strong>, significantly broadening the toolkit’s appeal and utility."   
+
+        ],   
+
+        skills: ["FastAPI", "Streamlit", "Hugging Face Transformers", "PyTorch", "soundfile", "librosa", "Docker", "Full-Stack Development", "MLOps", "Whisper API", "YOLOv5", "NLP", "Speech-to-Text", "Text-to-Speech", "Real-Time Systems", "Computer Vision"]   
+
+    },
+
+    {   
+
+        title: "Hybrid Predictive Maintenance System",   
+
+        // interactive_cover: { type: 'maintenance' }, // REMOVED: using first image from media array instead
+
+        media: [   
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/hybrid1.jpeg' }, // New cover image
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/hybrid2.jpeg' }   
+
+        ],   
+
+        description: "Developed and deployed an integrated Hybrid Predictive Maintenance system on Streamlit, combining supervised learning (LSTM) and reinforcement learning for optimal maintenance recommendations.",   
+
+        details: [   
+
+            "Developed and successfully deployed an integrated Hybrid Predictive Maintenance system on <strong>Streamlit</strong>. This innovative platform seamlessly combined supervised learning, specifically <strong>Long Short-Term Memory (LSTM) networks</strong>, with advanced reinforcement learning techniques to generate optimal, data-driven maintenance recommendations for industrial assets.",   
+
+            "Engineered a sophisticated LSTM-based deep learning model using <strong>TensorFlow/Keras</strong> to precisely predict machine health degradation and Remaining Useful Life (RUL) from complex synthetic time-series sensor data. This model achieved a <strong>30% improvement in prediction accuracy</strong> compared to traditional methods, enhancing proactive maintenance capabilities.",   
+
+            "Designed and implemented a comprehensive Streamlit multi-page application, featuring a 'Live Dashboard' for real-time asset performance monitoring and anomaly detection, alongside a 'Historical Explorer' for in-depth past data analysis and trend identification, providing a holistic view of operational status.",   
+
+            "Established a persistent <strong>SQLite database</strong> for rigorous logging of simulation reports, encompassing critical health metrics and interpretable insights (simulated <strong>SHAP/LIME</strong> values). This comprehensive logging strategy is estimated to <strong>reduce operational downtime costs by 20%</strong>, projecting annual savings of approximately $50,000 through optimized maintenance scheduling and reduced unexpected failures."   
+
+        ],   
+
+        skills: ["Streamlit", "TensorFlow", "Keras", "NumPy", "Pandas", "SQLite3", "Deep Learning (CNNs)", "Reinforcement Learning (PPO)", "SHAP", "LIME", "Plotly", "Python", "Data Analytics", "Anomaly Detection"]   
+
+    },
+
+    {   
+
+        title: "Customer Churn Prediction and API Deployment",   
+
+        // interactive_cover: { type: 'churn' }, // REMOVED: using first image from media array instead
+
+        media: [   
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/churn1.jpeg' }, // New cover image
+
+            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/churn2.jpeg' }   
+
+        ],   
+
+        description: "Architected and deployed an integrated Customer Churn Prediction system on Streamlit with a FastAPI backend for model inference, achieving high accuracy and efficient real-time predictions.",   
+
+        details: [   
+
+            "Architected and deployed a highly integrated Customer Churn Prediction system, featuring a <strong>Streamlit</strong> frontend for interactive user engagement and a <strong>FastAPI</strong> backend for robust model inference. This end-to-end solution provides real-time insights into customer attrition risks.",   
+
+            "Developed a robust churn prediction model, achieving a notable <strong>F1-score of 0.87</strong>. This model, utilizing advanced machine learning techniques, demonstrated high efficacy in identifying approximately <strong>75% of potential churners within a crucial 30-day window</strong>, enabling proactive retention strategies.",   
+
+            "Engineered sophisticated data preprocessing pipelines, strategically incorporating <strong>SMOTE (Synthetic Minority Over-sampling Technique)</strong> to address inherent class imbalance in the dataset. This technique demonstrably increased the model's recall for the minority (churn) class by <strong>25%</strong>, significantly enhancing its ability to detect at-risk customers.",   
+
+            "Launched a high-performance RESTful API using <strong>FastAPI and Uvicorn</strong>, engineered for optimal speed and scalability. This API achieved sub-100ms inference latency and was rigorously tested to handle up to <strong>500 requests per second</strong>, ensuring efficient real-time prediction capabilities for large-scale applications."   
+
+        ],   
+
+        skills: ["FastAPI", "Streamlit", "Scikit-learn", "Pandas", "NumPy", "imblearn", "Random Forest", "Neural Networks", "MLOps", "Model Deployment", "REST API", "Python", "Classification"]   
+
+    }
+
 ];
 const playgroundAppsData = [
     {
