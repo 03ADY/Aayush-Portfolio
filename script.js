@@ -110,7 +110,7 @@ const playgroundAppsData = [
     {
         title: "Enterprise RAG Chatbot Demo",
         description: "An interactive demo of the RAG chatbot. Upload your own documents or use the default knowledge base to ask questions and get context-aware answers from the AI.",
-        url: "https://rag-chatbot-roan-eight.vercel.app/",
+        url: "https://aura-rag-chatbot.vercel.app/",
         image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/rag2.jpeg"
     },
     {
