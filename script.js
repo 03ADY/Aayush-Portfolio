@@ -1,147 +1,324 @@
+// --- CONFIG ---
+const CONTACT_EMAIL = 'aayushdyadav2003@gmail.com';
+const FORM_SUBMIT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+
 // --- DATA ---
 const projectsData = [
     {
-        title: "Enterprise RAG Chatbot",
+        title: "Aura — Production RAG Platform",
+        githubRepo: "https://github.com/03ADY/RAG-Chatbot",
+        githubRepoExtra: "https://github.com/03ADY/RAG-Chatbot-Frontend",
         media: [
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/rag1.jpeg' },
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/rag2.jpeg' }
+            { type: 'image', url: 'images/rag1.jpeg' },
+            { type: 'image', url: 'images/rag2.jpeg' }
         ],
-        description: "A production-ready RAG chatbot using LangChain, Gemini Pro, and ChromaDB for context-aware, document-grounded question answering.",
+        description: "Full-stack RAG you can ship: FastAPI backend, Gemini 2.0, ChromaDB, document APIs, and a separate web UI—with sessions, citations, and ops endpoints recruiters expect in production AI.",
         details: [
-            "Architected a full-stack RAG application using <strong>LangChain</strong> to orchestrate the retrieval and generation pipeline with <strong>Google's Gemini Pro</strong> model for both embeddings and text generation.",
-            "Developed a robust <strong>FastAPI backend</strong> with Pydantic for data validation, featuring endpoints for chat, system health, and a crucial <strong>/reindex_kb</strong> endpoint to reload knowledge base documents in real-time.",
-            "Engineered a flexible data ingestion module supporting multiple document formats (including <strong>.pdf, .docx, and .csv</strong>) and implemented <strong>ChromaDB</strong> as the local vector store for efficient semantic search.",
-            "Implemented <strong>in-memory conversational memory</strong> to provide session-based context, enabling more natural and coherent follow-up questions from the user, with real-time source attribution for answers.",
-            "Designed a clean, mobile-responsive user interface with <strong>TailwindCSS</strong> for a modern chat experience and ensured production-readiness with a fully <strong>containerized Docker environment</strong> for the backend service."
+            "Versioned <strong>REST API</strong> (<code>/api/v1</code>) for chat, document upload/delete/reindex, and session memory.",
+            "<strong>Grounded answers</strong> via history-aware RAG, MMR retrieval, and source citations in the UI.",
+            "Production hygiene: optional API key auth, rate limits, <strong>/health</strong>, <strong>/ready</strong>, and <strong>/metrics</strong>.",
+            "<strong>Docker Compose</strong> + split frontend/backend repos—same architecture pattern used in industry RAG products."
         ],
-        skills: ["RAG", "LangChain", "Gemini Pro", "ChromaDB", "FastAPI", "TailwindCSS", "Docker", "Pydantic", "Vector Databases", "NLP", "REST API", "Google Generative AI"]
+        skills: ["RAG", "LangChain", "Gemini 2.0", "ChromaDB", "FastAPI", "Docker", "REST API", "Vector DB", "LLM", "Observability"]
     },
     {
-        title: "AI-Fueled E-commerce Analytics & Sales Forecasting System",
+        title: "CommerceIQ — Retail Analytics Dashboard",
+        githubRepo: "https://github.com/03ADY/ECommerce-Insight-Dashboard",
         media: [
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/ecommerce1.jpeg' },
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/ecommerce2.jpeg' }
+            { type: 'image', url: 'images/ecommerce1.jpeg' },
+            { type: 'image', url: 'images/ecommerce2.jpeg' }
         ],
-        description: "An AI-powered platform for e-commerce analytics and sales forecasting, leveraging Facebook Prophet and interactive dashboards to drive revenue strategy and reduce stockouts.",
+        description: "Business intelligence for e-commerce: KPIs, customer segmentation, demand forecasting, and cohort analysis—built to explain revenue drivers, not just plot charts.",
         details: [
-            "Developed an analytics system that connects to an *optimized SQLite3 database* (ecommerce.db) with settings like PRAGMA journal_mode=WAL for better concurrency and a PRAGMA cache_size=-2000 (2MB cache) to store temporary tables in memory (PRAGMA temp_store=MEMORY). The database schema includes a sales table with order_id, customer_id, product_id, purchase_date, amount, product_category, payment_method, and shipping_country, along with a product_inventory table.",
-            "Features a data generation module capable of creating *realistic historical data* for 60 days, simulating 50 customers per day, and incorporating seasonal patterns such as a weekday_factor (1.0 for weekdays, 0.7 for weekends) and hour_factors (e.g., 'morning': 0.8, 'afternoon': 1.2, 'evening': 1.5, 'night': 0.5). It generates 10 diverse products including 'Laptop' (priced at $1200), 'Smartphone' ($800), 'Headphones' ($200), 'T-shirt' ($30), 'Jeans' ($80), 'Sneakers' ($120), 'Coffee Maker' ($150), 'Backpack' ($50), 'Watch' ($300), and 'Tablet' ($600).",
-            "Generates *comprehensive sales metrics* including total_revenue, average_order_value, total_orders, unique_customers, and identifies the top 5 products by revenue, as well as daily_trends for orders and revenue. For example, 'Laptop' is identified as a top product with significant revenue. This data is cached for 5 minutes (cache_timeout=300) using lru_cache to enhance performance.",
-            "Performs *advanced RFM (Recency, Frequency, Monetary) analysis* by calculating additional metrics like avg_order_value, category_diversity (count of distinct product categories), and active_months (count of distinct months with purchases). Customer segmentation is performed using *K-Means clustering* with 4 defined clusters on recency, frequency, and monetary scores after applying percentile scores (1-5).",
-            "Creates an interactive *Plotly dashboard* with a make_subplots layout (rows=3, cols=2, height=1200, width=1200). The dashboard includes a 'Daily Revenue Trend' (line chart), 'Customer Segments' (pie chart, e.g., showing 39.9% in one segment), 'Top Products by Revenue' (bar chart), 'Payment Method Distribution' (pie chart, e.g., 25.3% for one method), 'Hourly Sales Pattern' (line chart) based on strftime('%H', purchase_date), and 'Geographic Distribution' (bar chart) based on shipping_country.",
-            "Forecasts future sales for 30 periods using the *Facebook Prophet* model, configured with yearly_seasonality=True, weekly_seasonality=True, daily_seasonality=True, and specific prior scales for changepoint (0.05), seasonality (10), and holidays (10). The forecast includes ds (date), yhat (predicted value), yhat_lower, and yhat_upper for confidence intervals."
+            "Period-over-period KPIs, drill-downs, and <strong>RFM playbooks</strong> for marketing and retention teams.",
+            "<strong>Prophet forecasting</strong> with MAPE-style accuracy reporting for inventory and revenue planning.",
+            "Cohort views, goal tracking, and automated insight summaries for stakeholder reviews.",
+            "Exportable executive briefs and demo scenarios for presentations and interviews."
         ],
-        skills: ["Streamlit", "Prophet", "Pandas", "NumPy", "Plotly Express", "Data Engineering", "Business Intelligence", "Predictive Analytics", "SQLite3", "Scikit-learn (KMeans)"]
+        skills: ["Streamlit", "Prophet", "Pandas", "Plotly", "RFM", "Forecasting", "Cohort Analysis", "Business Intelligence", "Data Analytics"]
     },
     {
-        title: "AI-Powered Trading System with Risk Analytics",
+        title: "TradePulse — Trading & Risk Analytics",
+        githubRepo: "https://github.com/03ADY/AI-Powered-Trading-Bot",
         media: [
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/stocks1.jpeg' },
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/stocks2.jpeg' }
+            { type: 'image', url: 'images/stocks1.jpeg' },
+            { type: 'image', url: 'images/stocks2.jpeg' }
         ],
-        description: "A real-time AI-driven algorithmic trading system deployed on Streamlit, providing live market data, technical indicators, and automated trade execution with robust risk management protocols.",
+        description: "Quant-style research app: live market data, signal scanner, backtesting, paper trading, and risk metrics (VaR, Sharpe, Monte Carlo)—strong full-stack + data engineering story.",
         details: [
-            "The system initializes with a default set of symbols including 'BTC-USD', 'ETH-USD', 'AAPL', and 'GOOGL', and an initial_capital of $100,000.0. The system logs its initialization with the specified symbols.",
-            "Fetches historical market data for all specified symbols using yfinance, requesting a period='60d' and interval='1h' to provide granular data for indicator calculations. Data fetching progress is logged for each symbol, including warnings if no data is received.",
-            "Calculates a comprehensive set of *technical indicators* including SMA (20-period and 50-period), EMA (12-period and 26-period), MACD (MACD line, Signal line, and Histogram), RSI (14-period), and Bollinger Bands (Middle, Upper with +2*std, and Lower with -2*std). This process includes error handling for robustness.",
-            "Generates trading signals based on combined conditions: a strong buy signal (value 1) when RSI < 30 and Close < BB_Lower, and a strong sell signal (value -1) when RSI > 70 and Close > BB_Upper. Additional signals (value +/- 0.5) are derived from MACD crossovers (e.g., MACD > MACD_Signal) with price confirmation against SMA_20.",
-            "Implements an EnhancedRiskManager with configurable parameters such as confidence_level (0.95), max_position_size (0.2), and max_drawdown_limit (0.15). It calculates base risk metrics including VaR (np.percentile(returns, (1 - confidence_level)*100)), CVaR, Sharpe Ratio (returns.mean() / returns.std() * np.sqrt(252)), and Max Drawdown. Enhanced metrics like Sortino Ratio, Downside Risk, Calmar Ratio, and Omega Ratio are also computed.",
-            "Features an AdvancedVisualizationEngine to create rich graphical reports. This includes a *correlation heatmap* of asset returns (zmin=-1, zmax=1, colorscale='RdBu'), which dynamically includes the generation date. For instance, it correctly identifies an AAPL-GOOGL correlation of 0.354 and a BTC-USD/ETH-USD correlation of 0.775.",
-            "Generates a *performance dashboard* using plotly.subplots.make_subplots with a rows=2, cols=2 layout, height=1000, and width=1200. This dashboard displays 'Cumulative Returns', 'Risk Metrics' (bar charts for Sharpe, Sortino, Calmar ratios using px.colors.qualitative.Set3), 'Daily Returns Distribution' (histograms with 50 bins), and 'Rolling Volatility (20-day)' plots.",
-            "Provides a detailed text report (_generate_text_report) summarizing risk analysis for each asset. For example, for BTC-USD, it reports a Sharpe Ratio of 0.036, Sortino Ratio of 0.035, Maximum Drawdown of -16.15%, Value at Risk (95%) of -0.88%, Conditional VaR of -1.47%, Calmar Ratio of 0.021, and Omega Ratio of 1.007."
+            "Multi-symbol dashboard with MACD, RSI, Bollinger Bands, and <strong>SPY benchmark</strong> comparison.",
+            "<strong>Backtest lab</strong> with equity curves, walk-forward validation, and strategy vs buy-and-hold alpha.",
+            "Paper portfolio, trade journal, correlation heatmaps, and position-sizing helpers.",
+            "Exportable HTML/CSV reports; works offline with synthetic data for demos."
         ],
-        skills: ["Streamlit", "NumPy", "Pandas", "PyTorch", "Scikit-learn", "Plotly", "Alpaca API", "Technical Indicators (MACD, RSI, Bollinger Bands, SMAs)", "Financial Analytics", "VaR", "Monte Carlo Simulation", "Real-Time Systems", "Quantitative Finance", "Time Series Forecasting", "Yfinance"]
+        skills: ["Streamlit", "Python", "yfinance", "Backtesting", "VaR", "Sharpe Ratio", "Plotly", "Quantitative Finance", "Time Series"]
     },
     {
-        title: "AI Services Toolkit Pro (Multi-Modal AI Assistant)",
+        title: "AI Toolkit — Multi-Modal AI Services",
+        githubRepo: "https://github.com/03ADY/AI-Toolkit",
         media: [
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit.jpeg' },
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit1.jpeg' }
+            { type: 'image', url: 'images/toolkit.jpeg' },
+            { type: 'image', url: 'images/toolkit1.jpeg' }
         ],
-        description: "Architected and deployed a comprehensive, integrated Multi-Modal AI Toolkit on Hugging Face Spaces, integrating 9 state-of-the-art Transformer pipelines for diverse AI capabilities.",
+        description: "Nine Hugging Face AI services behind one FastAPI backend and Streamlit UI—NLP, vision, and speech in a single deployable stack (great MLOps + API design sample).",
         details: [
-            "Features a robust application configuration (Config dataclass) with VERSION: \"1.0\", LAST_UPDATED: \"2025-02-10 18:22:33\", and flags for ENABLE_CUDA and ENABLE_TENSORRT. Key processing parameters include MAX_BATCH_SIZE: 32, MIN_BATCH_SIZE: 1, MEMORY_THRESHOLD: 0.85 (for CUDA memory optimization), CHUNK_SIZE: 640 (for image processing), MIN_CONFIDENCE: 0.25, NMS_THRESHOLD: 0.45, WHISPER_CHUNK_SIZE: 1024, and WHISPER_OVERLAP: 256. The default ONNX path is yolov5s.onnx.",
-            "Includes a CUDAManager for enhanced CUDA resource management, utilizing cuda.Stream() for concurrent operations and torch.cuda.amp.GradScaler for mixed-precision training (if CUDA is enabled). It actively optimizes GPU memory by clearing the cache and collecting garbage when current_memory exceeds the MEMORY_THRESHOLD, logging the memory optimization process (e.g., 'Memory optimized Usage: 0.20%'). The system logs CUDA availability (e.g., 'CUDA Available: True') and the number/names of detected GPUs (e.g., 'GPU 0: NVIDIA A100-SXM4-40GB').",
-            "Integrates *YOLOv5* for object detection, with a function to export_yolo_to_onnx() that loads yolov5s from ultralytics/yolov5, exports it to the specified ONNX path, and verifies the model. The TensorRTYOLO class then builds a TensorRT optimized engine from this ONNX model, configuring an optimization_profile to support dynamic batch sizes (min_shape=1, opt_shape=16, max_shape=32). It uses cuda.mem_alloc for efficient input/output memory allocation on GPU.",
-            "Implements MultiGPUWhisper for audio processing, loading a 'tiny' Whisper model. If NUM_GPUS > 1, it utilizes torch.nn.DataParallel for parallel processing across GPUs. It processes audio by splitting it into chunks and asynchronously processing each chunk on a dedicated GPU device (cuda:i) before merging the results.",
-            "Developed as a *FastAPI* application (title=\"Advanced ML Processor\", version=config.VERSION, description=\"Optimized ML processing with YOLO and Whisper\") with CORSMiddleware configured to allow all origins, credentials, methods, and headers. It exposes a /process-images endpoint that handles multiple UploadFile inputs for image inference and a /ws/audio WebSocket endpoint utilizing fastapi-websocket-pubsub for real-time audio transcription feedback and results streaming.",
-            "An enhanced /health endpoint provides detailed system status, including gpu_info (device ID, name, memory used/total in MB, utilization in percent), memory_stats (recent usage, last cleanup timestamp, current threshold), and confirms if tensorrt_enabled and multi_gpu_enabled are true. It also reports the status and configuration of the 'yolo' and 'whisper' models, e.g., 'yolo' status: 'loaded', 'onnx_path': 'yolov5s.onnx', 'batch_size': 32."
+            "Sentiment, summarization, translation, captioning, text generation, TTS, STT, chatbot, and Q&A endpoints.",
+            "Batch jobs, latency benchmarking, service health grid, and session reporting for reliability testing.",
+            "Document Analyzer pipeline and integration hooks (API keys, webhooks) for real product patterns.",
+            "<strong>Docker Compose</strong> local deploy; configurable API base URL for frontend/backend split."
         ],
-        skills: ["FastAPI", "Streamlit", "Hugging Face Transformers", "PyTorch", "soundfile", "librosa", "Docker", "Full-Stack Development", "MLOps", "Whisper API", "YOLOv5", "NLP", "Speech-to-Text", "Text-to-Speech", "Real-Time Systems", "Computer Vision", "TensorRT", "ONNX", "CUDA", "WebSockets"]
+        skills: ["FastAPI", "Streamlit", "Hugging Face", "Transformers", "Docker", "NLP", "Computer Vision", "Speech AI", "REST API", "MLOps"]
     },
     {
-        title: "Hybrid Predictive Maintenance System",
+        title: "PredictiveOps — Fleet Maintenance Analytics",
+        githubRepo: "https://github.com/03ADY/Smart-Hybrid-Maintenance",
         media: [
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/hybrid1.jpeg' },
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/hybrid2.jpeg' }
+            { type: 'image', url: 'images/hybrid1.jpeg' },
+            { type: 'image', url: 'images/hybrid2.jpeg' }
         ],
-        description: "Developed and deployed an integrated Hybrid Predictive Maintenance system on Streamlit, combining supervised learning (LSTM) and reinforcement learning for optimal maintenance recommendations.",
+        description: "IoT-style predictive maintenance: LSTM health scoring across a 10-machine fleet, live sensor dashboards, work orders, and audit logs—shows ML + operational software skills.",
         details: [
-            "The system is configured via SupervisedConfig, AdvancedRLConfig, and HybridSystemConfig dataclasses. Key parameters include: sequence_length=100, feature_dim=18 (though later context implies 10 features, 18 is from config) for supervised learning; state_dim=4, action_dim=4, hidden_units=256, learning_rate=0.0001, gamma=0.99, lambda_gae=0.95, clip_ratio=0.2, critic_loss_coef=0.5, entropy_coef=0.01, max_grad_norm=0.5, num_agents=4, batch_size=64, update_epochs=10, reward_scale=1.0 for RL; and update_interval=3600 seconds, prediction_horizon=24 hours, confidence_threshold=0.8, max_concurrent_predictions=10, alert_threshold=0.7, cost_threshold=50000, max_history_size=10000, visualization_enabled=True, report_format=\"detailed\" for the hybrid system.",
-            "Generates synthetic data for training with num_samples=1000 and feature_dim=10. The features include vibration, temperature, pressure, current, voltage, rpm, oil_level, humidity, acoustic, and magnetic_field. The data generation simulates health_score, failure_prob, and rul as targets based on sine waves and random walks.",
-            "Employs a *Multi-Agent PPO (Proximal Policy Optimization)* system, with PPOActorCritic networks for each of the 4 agents. The actor-critic network uses shared dense layers with 'relu' activation, policy layers ending in 'softmax' for action distribution, and value layers ending in a single dense unit. It selects actions using tf.random.categorical for training and tf.argmax for inference.",
-            "Features a RewardModel with configurable cost_weights for maintenance (1.0), failure (10.0), and downtime (5.0). It defines specific maintenance costs (e.g., action 0: $0.0, action 1: $100.0, action 2: $500.0, action 3: $1000.0) and downtime costs (e.g., action 0: $0.0, action 1: $2.0, action 2: $4.0, action 3: $8.0).",
-            "Predicts machine health metrics (health_score, failure_prob, rul) from sensor data, with an example output for a monitored machine (Machine 0) showing a health score of 0.612, failure probability of 0.388, and RUL of 61.2. The prediction for a given machine also includes a maintenance action (e.g., Action: 1 for Machine 0) and a value estimate (e.g., 0.057 for Machine 0).",
-            "Incorporates an ExplainabilityModule (conceptualized with *SHAP and LIME*) that provides insights into predictions by highlighting top contributing factors based on randomly generated importance scores in the example. For Machine 0, the top factors are magnetic_field: 0.258, temperature: 0.182, and humidity: 0.157.",
-            "Visualizes results through Matplotlib/Seaborn plots for 'Health Metrics', 'Maintenance Decisions' (scatterplot), 'Maintenance Costs' (line plot), and 'Feature Importance' (bar plot). These visualizations are saved to the model_checkpoint_dir (e.g., /content/hybrid_checkpoints/visualization_0.png). The system also saves final metrics to system_metrics.json."
+            "<strong>Fleet Command Center</strong> with risk ranking, ROI estimates, and plant-wide health maps.",
+            "Live sensor views, maintenance playbooks, and historical timelines (MTBF-style analysis).",
+            "Maintenance planner with Gantt scheduling and <strong>CMMS JSON</strong> export for handoff to ops tools.",
+            "SQLite-backed audit trail; HTML reports for managers; LSTM training pipeline included."
         ],
-        skills: ["Streamlit", "TensorFlow", "Keras", "NumPy", "Pandas", "SQLite3", "Deep Learning", "Reinforcement Learning (PPO)", "SHAP", "LIME", "Plotly", "Python", "Data Analytics", "Anomaly Detection", "Multi-Agent Systems"]
+        skills: ["Streamlit", "LSTM", "TensorFlow", "SQLite", "Predictive Maintenance", "Time Series", "IoT Analytics", "Python"]
     },
     {
-        title: "Customer Churn Prediction and API Deployment",
+        title: "RetainAI — Customer Churn Prediction",
+        githubRepo: "https://github.com/03ADY/ChurnAI",
         media: [
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/churn1.jpeg' },
-            { type: 'image', url: 'https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/churn2.jpeg' }
+            { type: 'image', url: 'images/churn1.jpeg' },
+            { type: 'image', url: 'images/churn2.jpeg' }
         ],
-        description: "Architected and deployed an integrated Customer Churn Prediction system on Streamlit with a FastAPI backend for model inference, achieving high accuracy and efficient real-time predictions.",
+        description: "End-to-end churn ML product: XGBoost with engineered features, calibrated thresholds, model comparison, and a retention ROI view—connects data science to business impact.",
         details: [
-            "Generates a synthetic customer churn dataset containing n_samples=2000 entries, with features such as age, gender, income, contract_type, monthly_charges, total_services, contacts_count, and complaints_count. Churn probability is engineered based on rules like 0.1 * (age > 50), 0.2 * (monthly_charges > 100), 0.3 * (total_services < 2), and 0.2 * (complaints_count > 2).",
-            "Performs robust data preprocessing using ColumnTransformer to apply StandardScaler for numerical features (age, income, monthly_charges, total_services, contacts_count, complaints_count) and OneHotEncoder (with handle_unknown=\"ignore\" and sparse_output=False) for categorical features (gender, contract_type).",
-            "Addresses class imbalance by applying *SMOTE (Synthetic Minority Over-sampling Technique)* with random_state=42 to the processed data before splitting into training and testing sets (test_size=0.2).",
-            "Trains and evaluates two distinct machine learning models: a *Random Forest Classifier* (n_estimators=100, random_state=42) and a *Neural Network* built with *TensorFlow/Keras*. The Neural Network architecture includes Dense(64, activation='relu'), BatchNormalization(), Dropout(0.3), Dense(32, activation='relu'), and a final Dense(1, activation='sigmoid') layer. It's compiled with Adam(0.001) optimizer, binary_crossentropy loss, and trained for 50 epochs with a batch size of 32.",
-            "Evaluates model performance comprehensively, calculating rf_accuracy and nn_accuracy on the test set (e.g., Random Forest Accuracy: 0.9416, Neural Network Accuracy: 0.9500 in example output). Visualizations generated and saved to the churn_project/ directory include 'Feature Importances' (e.g., 'monthly_charges' 0.23, 'total_services' 0.21, 'income' 0.17), 'Confusion Matrices' for both models, 'ROC Curves Comparison' with AUC scores (e.g., Random Forest AUC=0.949, Neural Network AUC=0.957), and an 'Impact of Classification Threshold on Different Metrics' (accuracy, precision, recall, f1 for thresholds 0.1 to 0.9).",
-            "Deploys a high-performance *RESTful API* using *FastAPI* and *Uvicorn*, served at http://localhost:8000/predict/. The /predict/ endpoint accepts PredictionInput (a Pydantic model with features as a dictionary) and returns timestamp, user (e.g., '03ADY'), random_forest_prediction, neural_network_prediction, and their respective probabilities (rf_probability, nn_probability). Example test cases (high_risk_customer, low_risk_customer, medium_risk_customer) with detailed feature sets are included to demonstrate API functionality and are visualized in a 'Churn Predictions by Model and Customer Profile' bar chart. All test results are saved to api_test_results.json."
+            "<strong>7 engineered features</strong> and train modes that compare XGBoost, Random Forest, and logistic regression.",
+            "Threshold tuning for precision/recall trade-offs; <strong>PR-AUC</strong> and calibration curves—not vanity accuracy.",
+            "Live scoring, batch export, and five app workspaces including a <strong>Business ROI</strong> retention calculator.",
+            "Modular <code>churnai/</code> Python package, training scripts, and Docker for reproducible demos."
         ],
-        skills: ["FastAPI", "Streamlit", "Scikit-learn", "Pandas", "NumPy", "imblearn (SMOTE)", "Random Forest", "Neural Networks", "MLOps", "Model Deployment", "REST API", "Python", "Classification", "TensorFlow", "Uvicorn"]
+        skills: ["XGBoost", "Scikit-learn", "Streamlit", "Feature Engineering", "Classification", "MLOps", "Docker", "Model Evaluation", "Python"]
     }
 ];
 
 const playgroundAppsData = [
     {
-        title: "Enterprise RAG Chatbot Demo",
-        description: "An interactive demo of the RAG chatbot. Upload your own documents or use the default knowledge base to ask questions and get context-aware answers from the AI.",
+        title: "Aura RAG — Live Demo",
+        description: "Try grounded Q&A with source citations, session chat, and document upload—full-stack GenAI in the browser.",
         url: "https://aura-rag-chatbot.vercel.app/",
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/rag2.jpeg"
+        image: "images/rag2.jpeg"
     },
     {
-        title: "AI-Powered Customer Churn Prediction",
-        description: "An interactive Streamlit application demonstrating a machine learning model that predicts customer churn, allowing users to input customer data and see real-time predictions.",
+        title: "RetainAI — Churn Scoring",
+        description: "Score customers, compare models, and estimate retention campaign ROI in an interactive Streamlit app.",
         url: "https://ay-churn-ai.streamlit.app/",
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/churn2.jpeg"   
+        image: "images/churn2.jpeg"
     },
     {
-        title: "AI-Fueled E-commerce Analytics & Sales Forecasting System",   
-        description: "A live Streamlit dashboard providing comprehensive e-commerce analytics, including sales trends, customer segmentation (RFM), and interactive visualizations for business insights.",
+        title: "CommerceIQ — Retail BI",
+        description: "Explore sales KPIs, RFM segments, forecasts, and cohort trends in a live analytics dashboard.",
         url: "https://ecommerce-insight-dashboard.streamlit.app/",
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/ecommerce2.jpeg"   
+        image: "images/ecommerce2.jpeg"
     },
     {
-        title: "AI Services Toolkit Pro",   
-        description: "Explore a suite of multi-modal AI models, including sentiment analysis, summarization, and image captioning, all served through a user-friendly interface.",   
-        url: "https://ay-ai-toolkit.streamlit.app/",   
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit1.jpeg"   
+        title: "AI Toolkit — 9 AI Services",
+        description: "Run sentiment, summarization, captioning, speech, and more from one multi-modal AI control panel.",
+        url: "https://ay-ai-toolkit.streamlit.app/",
+        image: "images/toolkit1.jpeg"
     },
     {
-        title: "Hybrid Predictive Maintenance Dashboard",   
-        description: "An interactive Streamlit dashboard showcasing real-time predictive maintenance insights, including anomaly detection and remaining useful life (RUL) predictions for industrial equipment.",   
-        url: "https://smart-hybrid-maintenance.streamlit.app/Live_Dashboard",
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/hybrid2.jpeg"   
+        title: "PredictiveOps — Fleet Maintenance",
+        description: "Monitor machine health, simulate failures, and plan maintenance across a multi-machine fleet.",
+        url: "https://smart-hybrid-maintenance.streamlit.app/",
+        image: "images/hybrid2.jpeg"
     },
     {
-        title: "AI-Powered Live Trading System",
-        description: "An interactive Streamlit application demonstrating a deep learning-based trading system with real-time market data, technical indicators, and robust risk management.",   
-        url: "https://ai-powered-trading-bot.streamlit.app/",   
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/stocks2.jpeg"   
+        title: "TradePulse — Markets & Backtests",
+        description: "Scan signals, backtest strategies, and review risk metrics with live and historical market data.",
+        url: "https://ai-powered-trading-bot.streamlit.app/",
+        image: "images/stocks2.jpeg"
+    }
+];
+
+const productionSystemsData = [
+    {
+        rank: 1,
+        title: 'PRONTO',
+        subtitle: 'Enterprise RAG Copilot — LangChain, FAISS & Jira',
+        company: 'Allwave',
+        period: 'Jan 2026 – Present',
+        summary: 'Production RAG support brain: FAISS vector retrieval, LangChain + Gemini orchestration, FastAPI microservices, and React—grounded answers under live incident SLAs.',
+        description: 'PRONTO is Allwave’s production support copilot—grounding every response in internal documentation, integrating Jira for ticket context, and automating AI analysis for L1/L2 engineers.',
+        tags: ['RAG', 'LangChain', 'FAISS', 'Gemini', 'FastAPI', 'React', 'MLOps', 'Lambda'],
+        stack: 'Python · FastAPI · LangChain · FAISS · React 18 · Gemini · Jira REST · boto3 · AWS Lambda · Amplify',
+        architecture: [
+            'Lazy-loaded RAG engine, Jira service, and escalation workflows for Lambda cold-start limits.',
+            'FAISS index (local + S3 sync) with curated knowledge-base ingestion.',
+            'Support workflow: smart chat, ticket analysis, apply-solution, and feedback loops.',
+            'React admin UI: ticket pagination, analytics, and priority notifications.'
+        ],
+        infrastructure: [
+            'Lambda + API Gateway; FAISS hydration from S3 on cold start.',
+            'JWT auth with admin approval gate; production CORS and strict environment separation.'
+        ],
+        highlights: [
+            'Shipped in production with real incidents and SLA expectations.',
+            'LangChain + Gemini with domain instructions and citation-style grounding.',
+            'Resolved Lambda INIT timeouts, S3 KB sync, and cross-environment networking.'
+        ],
+        impact: [
+            'Lower mean-time-to-resolution via RAG-cited answers and automated Jira commentary.',
+            'Direct proof of production GenAI—aligned with vector-search and LLM engineering roles.'
+        ]
+    },
+    {
+        rank: 2,
+        title: 'BINGO',
+        subtitle: 'GenAI Presales — RAG, Gemini & Amplify Full Stack',
+        company: 'Allwave',
+        period: 'Jan 2026 – Present',
+        summary: 'Full-stack GenAI presales platform: Ask BINGO RAG over 2,000+ SKUs, Gemini async BOQ generation, AVIXA validation, and React on AWS Amplify Gen 2.',
+        description: 'Bill of Quantities Intelligent Next-Gen Optimizer turns client requirements into AVIXA CTS-D compliant BOQs, schematics, and export-ready proposals for integrator presales teams.',
+        tags: ['RAG', 'Gemini', 'LLM', 'TypeScript', 'React', 'Amplify Gen 2', 'GraphQL', 'CDK'],
+        stack: 'React 18 · Vite · Amplify Gen 2 · DynamoDB · AppSync · Cognito · Lambda · SES · Gemini 2.5 Pro · ExcelJS · jsPDF · docx',
+        architecture: [
+            'Amplify Gen 2: auth, GraphQL, 8+ Lambdas (Gemini proxy, async job queue, weekly reports, admin bootstrap).',
+            'Ask BINGO RAG: vector + DB search, IndexedDB cache, exact-model matching—grounded SKU answers.',
+            'AVIXA engines: viewing distance, audio coverage, camera FOV; per-category brand enforcement.',
+            'CAD pipeline: signal flow, rack elevations, Stardraw symbols, DXF export with 27+ layers.'
+        ],
+        infrastructure: [
+            'Async Gemini job queue to avoid API Gateway timeouts on large BOQ generations.',
+            'Cognito groups + bootstrap-admin Lambda; IAM-scoped SES and ActivityLog audit trail.'
+        ],
+        highlights: [
+            'Database-first product sourcing with web price estimation and dimension retrieval.',
+            'Natural-language BOQ edits with strict brand rules per component class.',
+            'Multi-format export: Excel, PDF, and Word proposal packs.'
+        ],
+        impact: [
+            'Collapses multi-day manual BOQ work into AVIXA-validated, client-ready packages.',
+            'Showcases end-to-end full-stack AI: RAG, LLM jobs, CDK infra, and enterprise RBAC.'
+        ]
+    },
+    {
+        rank: 3,
+        title: 'AV Inventory Ops',
+        subtitle: 'Cloud-Native Enterprise Platform — 36-Table AWS Stack',
+        company: 'Allwave',
+        period: 'Jan 2026 – Present',
+        summary: 'Flagship full-stack operations platform: Amplify Gen 2, 36 DynamoDB tables, 19 Lambdas, GraphQL API, React PWA, embedded Gemini assistant, and India GST/MSME compliance.',
+        description: 'End-to-end AV integration operations system—inventory, procurement, invoicing, AMC/service tickets, client portal, and statutory compliance (GST, MSME, Tally XML) in one auditable cloud platform.',
+        tags: ['TypeScript', 'Amplify Gen 2', 'GraphQL', 'DynamoDB', 'Lambda', 'Gemini', 'React PWA', 'MLOps'],
+        stack: 'TypeScript · Amplify Gen 2 · AppSync GraphQL · DynamoDB (36 tables) · 19× Lambda · Cognito · S3 · SES · EventBridge · React 18 PWA · TanStack Query · Playwright',
+        architecture: [
+            'Domain model: products, unit records (8 GSIs), GRN, delivery challans, invoices, BOQ uploads, AMC, service tickets, vendors, clients, audit logs.',
+            '19 purpose-built Lambdas: alert engine, invoice scheduler, MSME compliance, BOQ parser, chatbot handler, Tally export, FY rollover, and more.',
+            'React PWA with shadcn/Radix UI, Zod forms, TanStack Table, Recharts, QR scanning, Cmd+K palette, and embedded Gemini assistant.'
+        ],
+        infrastructure: [
+            'PITR, encryption at rest, WAF on public endpoints; Secrets Manager for API keys.',
+            'EventBridge/Scheduler for FY rollover, TDS, warranty alerts, AMC renewal, and digest emails.',
+            '22 transactional SES templates; Vitest backend + Playwright E2E on frontend.'
+        ],
+        highlights: [
+            'Single system of record with full audit trails across operations and finance.',
+            'Automated India compliance: GSTIN validation, MSMED Act workflows, e-Way Bill alignment.',
+            'BOQ parser + Gemini chatbot reduce manual data entry on core screens.'
+        ],
+        impact: [
+            'Replaced fragmented spreadsheets with one production-grade, serverless platform.',
+            'Demonstrates large-scale full-stack ownership—backend, frontend, AI, and compliance.'
+        ]
+    },
+    {
+        rank: 4,
+        title: 'Nexo',
+        subtitle: 'Full-Stack AI Assistant — BOQ-to-Code on App Runner',
+        company: 'Allwave',
+        period: 'Jan 2026 – Present',
+        summary: 'TypeScript/React + Node.js full stack on AWS App Runner: Gemini code generation, BOQ parsing pipelines, troubleshooting modes, and team snippet libraries in DynamoDB.',
+        description: 'Nexo accelerates AV programmers from BOQ to deployable control code—structured site capture, multi-mode AI workflows, persisted history, and admin-provisioned access.',
+        tags: ['TypeScript', 'React', 'Gemini', 'LLM', 'App Runner', 'Node.js', 'DynamoDB', 'Full Stack'],
+        stack: 'TypeScript · React 18 · Vite · Node.js API · @google/genai · App Runner · Cognito · DynamoDB · S3',
+        architecture: [
+            'Quick Ask (generate / troubleshoot / document) and BOQ Guided Flow (parse → questions → guide).',
+            'Pipeline: Excel/Word → /api/boq/parse → validation → /api/boq/questions → /api/boq/guide.',
+            'Per-user history and team snippets in DynamoDB; admin provisioning UI.'
+        ],
+        infrastructure: [
+            'AWS App Runner + ECR; /api/health monitoring; Cognito invite-only pools with ADMIN RBAC.',
+            'Secrets via environment; zero client-side API keys in production builds.'
+        ],
+        highlights: [
+            'Deployed with syntax-highlighted, deployment-ready code output.',
+            'BOQ parsers for .xlsx/.xls/.docx with intelligent column detection.',
+            'Diagnosed App Runner timeouts vs long Gemini jobs using CloudTrail analysis.'
+        ],
+        impact: [
+            'Cuts BOQ-to-code cycle time across Crestron, Extron, QSC, and allied stacks.',
+            'Workflow-shaped LLM product—not generic chat—built for specialist engineers.'
+        ]
+    },
+    {
+        rank: 5,
+        title: 'HiRo',
+        subtitle: 'Multi-Tenant AI SaaS — FastAPI, Gemini & CI/CD',
+        company: 'Allwave',
+        period: 'Jan 2026 – Present',
+        summary: 'Multi-tenant HR platform: FastAPI on App Runner, Gemini HR copilot, DynamoDB workflows, SES automation, and CodeBuild → ECR production CI/CD.',
+        description: 'HiRo centralizes hiring and onboarding with branded templates, workflow vs campaign automation, verified sending domains, and auditable activity logs.',
+        tags: ['FastAPI', 'Gemini', 'Multi-Tenant', 'App Runner', 'MLOps', 'DynamoDB', 'SES'],
+        stack: 'FastAPI · App Runner · Cognito · SES · DynamoDB · Gemini · CodeBuild · ECR · CloudWatch',
+        architecture: [
+            'Multi-tenant DynamoDB models for templates, activity logs, and HR workflow state.',
+            'Split automation: workflow-triggered sequences vs standalone campaign sends.',
+            'Gemini HR chatbot in compose/send flows with configurable model routing.'
+        ],
+        infrastructure: [
+            'GitHub → CodeBuild → ECR → App Runner deploy pipeline.',
+            'SES domain verification for production deliverability; CloudWatch runbooks.'
+        ],
+        highlights: [
+            '7+ branded HTML email templates; per-user verified SES sending domains.',
+            'Workflow vs campaign automation with auditable send logs.',
+            'Production hardening: template sync, compose UI, preview rendering, Gemini config.'
+        ],
+        impact: [
+            'Unified hiring and onboarding with enterprise email deliverability.',
+            'Shows internal SaaS delivery: multi-tenant data, CI/CD, and incident response.'
+        ]
+    },
+    {
+        rank: 6,
+        title: 'EZ Configurator',
+        subtitle: '3D + GenAI Design Studio — React Three Fiber & Express',
+        company: 'Allwave',
+        period: 'Jan 2026 – Present',
+        summary: 'React Three Fiber 3D studio with AVIXA physics engines, Gemini auto-design API, Express sidecar, and one-click compliance + BOQ PDF handover.',
+        description: 'EZ Configurator lets presales and engineering validate room designs before procurement—AVIXA calculations, immersive 3D placement, and AI-assisted layout proposals.',
+        tags: ['React', 'Three.js', 'Gemini', 'LLM', 'Express', 'AVIXA', 'Full Stack'],
+        stack: 'React 18 · Three.js · @react-three/fiber · Zustand · Tailwind · Express · Gemini · jsPDF',
+        architecture: [
+            'Physics engines: DISCAS viewing distance, SPL, Sabine RT60, cable limits (HDMI, HDBaseT, Dante, AVoIP).',
+            '42-SKU catalog across 14 brands; PBR materials and snap-to-surface 3D placement.',
+            'Express sidecar: POST /api/chat and /api/auto-design for constraint-driven proposals.'
+        ],
+        infrastructure: [
+            'Split Vite frontend + Node Express AI API for secure key isolation.',
+            'PDF pipeline: AVIXA compliance report, GST BOQ, and network scheme in one export.'
+        ],
+        highlights: [
+            'Floor heatmaps and per-display AVIXA pass/fail badges before purchase orders.',
+            'Catalog build/validate scripts enforce product taxonomy integrity.',
+            'Module handover unifies compliance, BOQ, and network documentation.'
+        ],
+        impact: [
+            'De-risks hardware commits by proving designs against physics—not slides alone.',
+            'Combines 3D visualization, domain engineering math, and generative AI in one product.'
+        ]
     }
 ];
 
@@ -154,132 +331,6 @@ const skillsData = [
     { title: 'Data Visualization & BI', skills: ['Plotly', 'Matplotlib', 'Seaborn', 'Dash', 'Tableau (conceptual)', 'Streamlit'] },   
     { title: 'Specialized Tools', skills: ['SHAP', 'LIME', 'Prophet', 'Whisper API', 'YOLOv5', 'OpenAI API', 'LLMs (ChatGPT)', 'Financial Modeling', 'Monte Carlo Simulation', 'A/B Testing', 'Alpaca API', 'Technical Indicators (MACD, RSI, Bollinger Bands, SMAs)'] }   
 ];
-
-const blogPostsData = [
-    {   
-        title: "Crafting My Digital Footprint: A Technical Deep Dive into Portfolio Development",   
-        date: "2025-07-08", // Current Date
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/Build-Your-Portfolio.png", // Updated with your provided image!
-        tags: ["Portfolio", "Web Development", "MLOps", "Journey", "Frontend", "Backend"],   
-        content: `
-            <p>The journey of building a personal portfolio is far more than just compiling past projects; it's a technical deep dive into system architecture, deployment pipelines, and user experience design. This platform itself stands as a testament to my capabilities, a living showcase of the principles I advocate for in AI and Data Science. My primary motivation was to create a dynamic, engaging space that extends beyond static résumés, providing interactive demonstrations and tangible insights into my technical thought process.</p>
-            <p>From a foundational perspective, the entire application is architected around a robust web development stack. HTML provides the semantic structure, ensuring accessibility and search engine optimization. CSS, augmented by the utility-first framework <strong>Tailwind CSS</strong>, enables rapid and consistent styling, allowing for a highly responsive and aesthetically pleasing user interface across various devices. The dynamic and interactive elements that bring this portfolio to life are powered by pure <strong>JavaScript</strong>, demonstrating proficiency in client-side scripting and DOM manipulation.</p>
-            <p>A key design consideration was the seamless integration of various data sources and interactive components. Project details, skill sets, and blog content are managed programmatically within JavaScript arrays, facilitating easy updates and a consistent data structure. Features like the dynamic typing animation on the hero section and the interactive modal for project details were meticulously implemented to enhance user engagement and provide a polished experience. The background particle animation, while seemingly simple, involves canvas manipulation to create a visually appealing, low-resource effect.</p>
-            <p>Beyond the immediate user interface, the deployment strategy for this portfolio embodies critical <strong>MLOps principles</strong>. The entire codebase is version-controlled using <strong>Git</strong> and hosted on <strong>GitHub</strong>, providing a robust system for tracking changes, collaborating (even if just with myself!), and maintaining a history of development. The selection of <strong>Vercel</strong> for continuous deployment streamlined the integration process significantly. Every commit to the \`main\` branch of the GitHub repository automatically triggers a new build and deployment on Vercel, demonstrating a practical application of CI/CD pipelines. This automation ensures that updates are delivered swiftly and reliably to the live environment, reflecting the agile development methodologies I apply to more complex AI systems.</p>
-            <p>This portfolio’s development journey, while focused on showcasing Machine Learning and Data Science, also served as an invaluable learning experience in full-stack web development and robust deployment practices. It reinforced the understanding that a successful technical project encompasses not just sophisticated algorithms or data models, but also the resilient infrastructure, meticulous deployment strategies, and intuitive user interfaces that bring those innovations to life.</p>
-        `   
-    },
-    {   
-        title: "Architecting Intelligence: My Journey in Tech",   
-        date: "2025-06-26",   
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit.jpeg",   
-        tags: ["Career", "Reflection", "MLOps", "Generative AI"],   
-        content: `
-            <p>Welcome to my digital sanctuary, a space where I articulate my journey as an AI and Data Science enthusiast. My pursuit of a B.Tech at A. C. Patil College of Engineering has been a crucible for mastering the theoretical underpinnings of intelligent systems. However, my true passion transcends mere comprehension; it lies in the architecting and deployment of intelligent, actionable solutions that yield tangible, real-world impact. This platform serves as a chronicle of my exploration, the ambitious projects that ignite my curiosity, and the invaluable lessons gleaned from each technical endeavor.</p>
-            <p>My academic trajectory and professional engagements have been rigorously focused on acquiring mastery across the entire machine learning lifecycle. This encompasses the meticulous construction of resilient data pipelines, leveraging distributed computing paradigms such as <strong>Hadoop and Spark</strong>, to the strategic deployment of scalable microservices powered by <strong>Python and FastAPI</strong>. My objective consistently revolves around engineering robust, end-to-end systems that are not only performant but also maintainable and extensible.</p>
-            <blockquote class="border-l-4 border-indigo-500 pl-4 text-slate-300 italic">"The goal is to turn data into information, and information into insight." - Carly Fiorina. This profound statement encapsulates the very essence of my philosophical approach to data science and artificial intelligence.</blockquote>
-            <p>Beyond the foundational backend infrastructure, my core intellectual curiosity resides in the intricate dynamics of the models themselves. I have immersed myself in a diverse spectrum of machine learning paradigms, ranging from conventional predictive analytics, such as the customer churn models meticulously constructed using <strong>Random Forests</strong>, to the avant-garde frontiers of deep learning, incorporating architectures like <strong>Convolutional Neural Networks (CNNs)</strong>, <strong>Long Short-Term Memory (LSTMs)</strong>, and <strong>Transformers</strong>. A project that I hold in particularly high esteem is the <strong>AI Services Toolkit Pro (Multi-Modal AI Assistant)</strong>, a complex integration where I synergized OpenAI's Whisper for state-of-the-art transcription capabilities with YOLOv5 for real-time object detection. The technical challenge of seamlessly merging these disparate yet powerful technologies into a singular, cohesive, and user-centric application was exhilarating and deeply rewarding.</p>
-            <p>My commitment extends beyond mere model development to ensuring that these intelligent systems are not only robustly engineered but also demonstrably scalable and inherently maintainable. This necessitates a stringent adherence to <strong>MLOps</strong> principles, encompassing the meticulous implementation of Continuous Integration/Continuous Deployment (CI/CD) pipelines, comprehensive model versioning strategies, and diligent continuous monitoring protocols. My hands-on experience with <strong>Docker</strong> and platform-as-a-service providers like <strong>Render and Heroku</strong> has been pivotal in facilitating the efficient deployment of these intrinsically complex systems. It is my unwavering conviction that a meticulously engineered deployment strategy is as critically important as the predictive or generative power of the model itself in delivering tangible business value.</p>
-            <p>I am particularly enthused by the rapid advancements in <strong>Generative AI and Large Language Models (LLMs)</strong>, and I have proactively engaged in exploring their transformative applications, as evidenced by my specialized certification in this cutting-edge domain. The inherent capacity of these technologies to autonomously create novel content, synthesize vast quantities of information, and even generate executable code unlocks an unprecedented array of possibilities for the next generation of AI solutions, and I am eager to contribute to their evolution.</p>
-        `   
-    },
-    {   
-        title: "Deep Dive: Handling Imbalance in Churn Prediction",   
-        date: "2025-06-20",   
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/churn1.jpeg",   
-        tags: ["Deep Dive", "Machine Learning", "Classification", "Data Preprocessing"],   
-        content: `
-            <p>One of the most pervasive and insidious challenges encountered in real-world classification problems, such as the critical task of customer churn prediction, is the inherent presence of severely imbalanced datasets. In such scenarios, the proportion of the minority class – for instance, customers who actually churn – is disproportionately small compared to the majority class (non-churning customers). Left unaddressed, this severe class imbalance can lead to a highly deceptive model that achieves a superficially high accuracy by merely predicting the dominant class for every instance, rendering it practically useless for identifying the crucial events of interest.</p>
-            <p>In my <strong>Customer Churn Prediction and API Deployment</strong> project, I confronted this challenge directly and systematically. The linchpin of my approach was the strategic application of the <strong>SMOTE (Synthetic Minority Over-sampling Technique)</strong> algorithm. Unlike simplistic oversampling methods that merely duplicate existing minority class samples, SMOTE operates by intelligently generating new, synthetic samples. These synthetic data points are created by interpolating between existing minority class instances and their k-nearest neighbors in the feature space. This sophisticated generative approach effectively mitigates overfitting to specific minority samples and provides a richer, more diverse, and crucially, more balanced dataset for the machine learning model to effectively train on.</p>
-            <p>The impact of this data re-balancing was profound and quantitatively significant. By meticulously applying SMOTE within the data preprocessing pipeline, I achieved a <strong>demonstrable increase of 25% in the model's recall for the churn class</strong>. This enhancement was not just a statistical improvement; it directly translated into the model becoming substantially more adept at its primary strategic objective: accurately identifying customers who are genuinely at risk of attrition. This heightened ability to detect potential churners proactively within a 30-day window allowed for the timely deployment of targeted retention strategies, moving from reactive mitigation to proactive customer engagement.</p>
-            <p>This experience served as a powerful testament to a fundamental principle in machine learning: headline accuracy is rarely the sole arbiter of a model's real-world utility. A nuanced understanding of data characteristics and the strategic application of advanced preprocessing techniques are paramount to developing truly effective and impactful models. The combination of data engineering rigor and algorithmic selection was instrumental in achieving an F1-score of 0.87, signifying a robust balance between precision and recall, and enabling the identification of 75% of high-risk churners, thereby providing actionable intelligence for business stakeholders.</p>
-        `   
-    },
-    {
-        title: "The Power of Real-time Data in Trading",
-        date: "2025-06-15",
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/stocks1.jpeg",   
-        tags: ["Finance", "Real-time Systems", "Data Engineering", "Trading"],   
-        content: `
-            <p>In the high-octane and perpetually evolving domain of financial trading, the acquisition and judicious utilization of real-time data transcend mere advantage; it constitutes an absolute strategic imperative. My <strong>AI-Powered Trading System with Risk Analytics</strong> project was meticulously engineered around this fundamental principle, demanding the construction of highly robust and ultra-low latency data ingestion pipelines. We leveraged distributed streaming technologies, notably <strong>Apache Kafka</strong>, to process an astounding throughput of <strong>over 10,000 data points per minute</strong>, ensuring immediate availability of market intelligence.</p>
-            <p>This unparalleled real-time data processing capability was foundational and critical for several interconnected reasons:</p>
-            <ul>
-                <li><strong>Timely Decision Optimization:</strong> The instantaneous data feeds were directly channeled into our sophisticated LSTM (Long Short-Term Memory) models. This architectural design facilitated up-to-the-minute market analysis and predictive modeling, directly boosting the efficiency of trading decisions by a remarkable <strong>30%</strong>. The ability to react and strategize within milliseconds is paramount in volatile markets.</li>
-                <li><strong>Dynamic Risk Mitigation:</strong> The seamless integration of live market data with crucial risk metrics, such as Value-at-Risk (VaR) and Sortino Ratio, empowered our system to react with unparalleled swiftness and precision to market volatility and unforeseen events. This proactive risk management approach was quantitatively demonstrated to lower simulated investment risk by <strong>22%</strong>, safeguarding capital and optimizing portfolio stability.</li>
-                <li><strong>Sustained Competitive Superiority:</strong> In algorithmic trading, the capacity to process, analyze, and act upon market data faster than competitors translates directly into a formidable competitive edge. This accelerated data-to-action cycle consistently contributed to significant gains in simulated portfolio returns, capitalizing on ephemeral market inefficiencies.</li>
-            </ul>
-            <p>The paramount engineering challenge revolved around guaranteeing minimal data latency and maximizing throughput while maintaining data integrity. By architecting a solution around distributed streaming platforms, we successfully established a resilient, highly efficient, and fault-tolerant backbone for our intricate predictive models. This project unequivocally demonstrated that superior data engineering is not merely supportive but absolutely foundational to the successful implementation and sustained performance of advanced AI applications within the demanding landscape of quantitative finance. Our strategic integration with the <strong>Alpaca API</strong> further solidified this capability by providing streamlined and robust access to both historical and real-time stock data, enabling granular bar updates and facilitating seamless, high-frequency order submissions directly to trading venues.</p>
-        `   
-    },
-    {
-        title: "Interpretable AI: Beyond the Black Box",
-        date: "2025-06-08",
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/hybrid1.jpeg",   
-        tags: ["AI Ethics", "Explainable AI", "Machine Learning", "Predictive Maintenance"],   
-        content: `
-            <p>As Artificial Intelligence models escalate in complexity, particularly within mission-critical applications such as predictive maintenance, comprehending the underlying rationale for a model's prediction becomes as strategically vital as the prediction itself. This paradigm defines the burgeoning field of Explainable AI (XAI). In my <strong>Hybrid Predictive Maintenance System</strong>, a core design objective was to demystify the inherently complex interplay of Deep Learning and Reinforcement Learning, rendering the model's decisions transparent and actionable through the strategic application of <strong>SHAP (SHapley Additive exPlanations) and LIME (Local Interpretable Model-agnostic Explanations)</strong>.</p>
-            <p>SHAP offers a unified, game-theoretic framework for interpreting predictions, systematically assigning an importance value (Shapley value) to each input feature for a given prediction. This provides a global understanding of feature importance while maintaining local fidelity to individual predictions. Complementarily, LIME excels at explaining the predictions of any classifier or regressor by constructing a simpler, locally faithful, interpretable model around the specific instance to be explained. The synergistic application of these two techniques provides a multi-faceted view of model behavior, addressing both individual decision-making and overall model characteristics.</p>
-            <ul>
-                <li><strong>Precision in Anomaly Attribution:</strong> We were able to precisely identify and quantify the top 5 influential factors (e.g., specific sensor readings, operational parameters, environmental conditions) that most significantly contributed to a predicted equipment anomaly or impending failure. This granular insight transforms a mere "failure alert" into actionable diagnostic intelligence.</li>
-                <li><strong>Cultivating Stakeholder Trust:</strong> Providing maintenance teams and operational managers with clear, human-understandable justifications behind predicted failures dramatically increased their confidence and trust in the AI system. This transparency is indispensable for fostering adoption and leveraging AI for critical operational decisions.</li>
-                <li><strong>Iterative Model Enhancement:</strong> The insights derived from SHAP and LIME analyses were not just for reporting; they served as invaluable feedback loops for refining feature engineering strategies and optimizing the underlying model architecture. This iterative refinement process directly contributed to the <strong>30% improvement in prediction accuracy</strong>, underscoring the reciprocal relationship between interpretability and model performance.</li>
-            </ul>
-            <p>This unwavering commitment to interpretability ensures that our AI solutions are not merely powerful computational tools but are also actionable, trustworthy, and deeply integrated into operational workflows, effectively bridging the inherent gap between complex algorithms and the pragmatic demands of real-world industrial decisions. Within the Hybrid Predictive Maintenance System, this interpretability was pivotal for generating comprehensive simulation reports and providing granular insights that directly contributed to an estimated <strong>20% reduction in operational downtime costs</strong>, translating into substantial annual savings for industrial operations.</p>
-        `   
-    },
-    {
-        title: "Unlocking Multi-Modal AI: The Toolkit Approach",
-        date: "2025-06-01",
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/toolkit.jpeg",   
-        tags: ["AI", "Multi-modal AI", "Transformers", "FastAPI", "Streamlit"],
-        content: `
-            <p>The contemporary landscape of Artificial Intelligence increasingly necessitates systems capable of processing and synthesizing information across disparate data modalities – text, speech, and images. Building and deploying state-of-the-art AI models that seamlessly handle this multi-modal complexity presents considerable engineering challenges. My <strong>AI Services Toolkit Pro (Multi-Modal AI Assistant)</strong> project was conceived and meticulously designed to address these challenges head-on, by establishing a unified, extensible platform for a diverse array of Transformer-based AI capabilities.</p>
-            <p>The core architectural principle was the strategic integration of <strong>9 distinct Transformer pipelines sourced from Hugging Face</strong>, a leading ecosystem for pre-trained models. This integration encompassed a broad spectrum of AI tasks, including nuanced sentiment analysis, concise text summarization, precise image captioning, and advanced question-answering. This modular approach enabled the offering of a wide range of sophisticated AI services from a singular, cohesive, and high-performance application endpoint.</p>
-            <p>Key aspects of the system's robust architecture include:</p>
-            <ul>
-                <li>A high-performance <strong>FastAPI backend</strong> meticulously engineered to handle asynchronous operations, ensuring maximal concurrency and responsiveness. This backend leverages <strong>Pydantic models</strong> for rigorous data validation and serialization, guaranteeing data integrity and type safety. AI services are exposed via clean, RESTful <code>/api</code> endpoints, facilitating easy integration with other systems.</li>
-                <li>An intuitive and dynamic <strong>Streamlit frontend</strong> that provides a rich, interactive user experience. This interface allows users to seamlessly interact with various AI services, observe real-time processing feedback, review comprehensive API call histories, and monitor overall system status, enhancing user transparency and control.</li>
-                <li>Implementation of advanced multi-modal features, including sophisticated <strong>Text-to-Speech (TTS)</strong> capabilities with dynamic speaker embeddings for personalized voice output, and highly accurate <strong>Speech-to-Text (STT)</strong> with automatic audio resampling to optimize transcription quality across diverse audio inputs. These accessibility enhancements demonstrably improved usability for an estimated <strong>5,000 daily users</strong>, significantly broadening the toolkit’s appeal and utility.</li>
-            </ul>
-            <p>This project serves as a comprehensive demonstration of a full end-to-end MLOps pipeline, spanning from intricate model integration and robust API development to seamless frontend deployment on scalable platforms such as <strong>Hugging Face Spaces</strong>. It unequivocally highlights the transformative power of strategically combining specialized AI models into a user-friendly, enterprise-ready toolkit, thereby rendering advanced AI capabilities both highly accessible and readily actionable for a diverse user base.</p>
-        `
-    },
-    {
-        title: "Mastering MLOps: From Code to Scalable Production AI",
-        date: "2025-05-28",   
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/mlops.jpeg", // New blog image
-        tags: ["MLOps", "Deployment", "Scalability", "DevOps", "Production AI"],
-        content: `
-            <p>In the dynamic realm of Artificial Intelligence, the development of a powerful and accurate machine learning model represents merely the initial phase of a much broader, complex lifecycle. The quintessential challenge lies in transitioning these experimental models from development environments to reliable, high-performing, and scalable production systems. This critical transition is precisely where <strong>MLOps (Machine Learning Operations)</strong> emerges as an indispensable engineering discipline, acting as the bridge between theoretical models and real-world impact.</p>
-            <p>My extensive experience, honed during a Python Backend Developer Internship and through various rigorous AI projects, has profoundly ingrained in me the paramount importance of robust MLOps practices. MLOps is not merely a collection of tools; it is a holistic engineering philosophy that unifies ML system development (Dev) with ML system operations (Ops). It meticulously encompasses a comprehensive spectrum of practices aimed at streamlining the entire machine learning lifecycle, from initial data collection and iterative model training to robust deployment, continuous monitoring, and perpetual improvement in a production setting. Key components that form the bedrock of an effective MLOps framework include:</p>
-            <ul>
-                <li><strong>Continuous Integration/Continuous Delivery (CI/CD):</strong> This pillar involves automating the entire pipeline for building, rigorously testing, and reliably deploying models. My direct involvement in orchestrating <strong>Docker-containerized deployments to platforms like Render and Heroku</strong> demonstrably reduced critical deployment cycles by a remarkable <strong>40%</strong>. This automation minimizes manual errors, accelerates iteration velocity, and ensures faster time-to-market for AI-driven features.</li>
-                <li><strong>Model Versioning and Governance:</strong> Meticulously tracking and managing distinct versions of models, alongside their associated training data and evaluation metrics, is paramount for ensuring reproducibility, facilitating efficient debugging, and enabling seamless rollbacks when necessary. This robust versioning is crucial for regulatory compliance and audit trails in production AI systems.</li>
-                <li><strong>Proactive Monitoring and Alerting:</strong> Continuous, real-time observation of model performance, detection of data drift and concept drift, and comprehensive system health monitoring in production are essential. This proactive vigilance allows for the rapid identification and timely resolution of issues, preventing degradation of model efficacy and ensuring consistent business value.</li>
-                <li><strong>Scalable Infrastructure Design:</strong> Architecting systems that can seamlessly handle escalating inference loads and data volumes is fundamental for production AI. My direct experience in building scalable microservices using <strong>FastAPI and Flask</strong> resulted in an impressive <strong>25% improvement in API response times</strong> and demonstrated the capability to handle <strong>over 10,000 daily requests with an exceptional 99.9% uptime</strong>, a clear testament to robust architectural design and effective load balancing.</li>
-            </ul>
-            <p>Furthermore, the advent of platforms like <strong>Hugging Face Spaces</strong> significantly democratizes the application of MLOps principles, providing accessible and efficient avenues for deploying, sharing, and collaborating on machine learning models. By diligently mastering these MLOps tenets, AI solutions transcend the realm of mere innovative prototypes; they evolve into reliable, high-performing, and continuously valuable assets that deliver sustained strategic advantages and profound business impact.</p>
-        `   
-    },
-    {
-        title: "Data Engineering for AI: Building Resilient Data Pipelines",
-        date: "2025-05-20",   
-        image: "https://raw.githubusercontent.com/adarshdivase/ADARSH-PORTFOLIO/main/images/datascience.jpeg", // New blog image
-        tags: ["Data Engineering", "Big Data", "Apache Kafka", "Data Pipelines", "ETL"],
-        content: `
-            <p>At the foundational core of every highly effective Artificial Intelligence or Machine Learning system lies an undeniably robust, meticulously engineered, and perpetually reliable data pipeline. Without a continuous flow of clean, accessible, and high-fidelity data, even the most exquisitely sophisticated models are ultimately rendered impotent. My academic background, coupled with extensive hands-on project experience, has equipped me with profound expertise in architecting and implementing <strong>resilient data engineering solutions</strong> that serve as the lifeblood of intelligent systems.</p>
-            <p>My specialized certifications in Data Engineering, particularly focusing on <strong>Hadoop & Spark</strong>, provided the essential theoretical and practical groundwork for comprehending and managing large-scale data processing paradigms. Key technologies that form the bedrock of modern AI-driven data pipelines are:</p>
-            <ul>
-                <li><strong>Apache Hadoop:</strong> A foundational framework for distributed storage (HDFS) and batch processing of colossal datasets. Hadoop's architecture enables the handling of petabyte-scale data, making it indispensable for foundational data lakes and historical data analysis for model training.</li>
-                <li><strong>Apache Spark:</strong> A powerful and versatile unified analytics engine designed for large-scale data processing. Spark offers unparalleled speed and flexibility, making it ideal for a multitude of tasks including complex ETL (Extract, Transform, Load) operations, advanced analytics, and machine learning feature engineering on massive datasets, significantly outperforming traditional MapReduce in many scenarios.</li>
-                <li><strong>Apache Kafka:</strong> A distributed streaming platform architected for building real-time data pipelines and streaming applications. In my <strong>AI-Powered Trading System with Risk Analytics</strong>, I leveraged Apache Kafka to establish ultra-low latency, real-time data ingestion pipelines capable of processing <strong>over 10,000 data points per minute</strong>. This real-time capability was paramount, significantly boosting decision efficiency and enabling immediate responsiveness to market dynamics.</li>
-                <li><strong>SQL and NoSQL Databases:</strong> Proficiency extends to proficiently managing and optimizing various database systems, including relational databases like <strong>PostgreSQL and MySQL</strong> for structured data integrity and consistency, and NoSQL databases such as <strong>MongoDB</strong> for flexible, scalable storage of unstructured or semi-structured data. My work specifically utilizing the <strong>SQLAlchemy ORM</strong> in conjunction with PostgreSQL databases resulted in a <strong>quantifiable reduction of data retrieval time by 15%</strong>, optimizing application performance and responsiveness.</li>
-            </ul>
-            <p>The meticulous construction of these resilient and high-throughput data pipelines is not merely an operational necessity; it is a strategic differentiator. It ensures that AI models consistently receive the high-quality, timely, and relevant data they critically require to perform optimally and deliver accurate predictions or insights. This foundational layer, though often unseen by end-users, is unequivocally paramount to the success, reliability, and ultimately, the tangible business impact of any sophisticated AI initiative.</p>
-        `   
-    }
-].sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date descending for recent posts
-
 
 // --- UI LOGIC ---
 document.addEventListener('DOMContentLoaded', () => {
@@ -382,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.className = "project-card card-bg rounded-2xl flex flex-col overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer";
         card.innerHTML = `
             <div class="interactive-cover-container">
-                <img src="${project.media[0].url}" alt="${project.title} Cover" class="w-full h-full object-cover object-center" onerror="this.onerror=null;this.src='https://placehold.co/300x150/1e1b4b/c4b5fd?text=Image+Error';">
+                <img src="${project.media[0].url}" alt="${project.title} Cover" loading="lazy" class="w-full h-full object-cover object-center" onerror="this.onerror=null;this.src='https://placehold.co/300x150/1e1b4b/c4b5fd?text=Image+Error';">
             </div>
             <div class="p-6 flex flex-col flex-grow">
                 <div>
@@ -412,7 +463,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const appCard = document.createElement('div');
             appCard.className = "card-bg rounded-2xl flex flex-col overflow-hidden transform hover:-translate-y-2 transition-transform duration-300 cursor-pointer";
             appCard.innerHTML = `
-                <img src="${app.image}" alt="${app.title}" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e1b4b/c4b5fd?text=App+Image';">
+                <img src="${app.image}" alt="${app.title}" loading="lazy" class="w-full h-48 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1e1b4b/c4b5fd?text=App+Image';">
                 <div class="p-6 flex flex-col flex-grow">
                     <div>
                         <h3 class="text-xl font-bold text-white mb-2">${app.title}</h3>
@@ -434,10 +485,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    const closeMobileMenu = () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+    };
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', String(!mobileMenu.classList.contains('hidden')));
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
+
+    // Active nav on scroll
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [...navLinks].map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const setActiveNav = (id) => {
+        navLinks.forEach(link => {
+            link.classList.toggle('nav-link-active', link.getAttribute('href') === `#${id}`);
+        });
+    };
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) setActiveNav(entry.target.id);
+        });
+    }, { rootMargin: '-40% 0px -50% 0px', threshold: 0 });
+    sections.forEach(section => navObserver.observe(section));
+
+    // Scroll to top
+    const scrollTopBtn = document.getElementById('scroll-top-btn');
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+        scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
 
     // Typing animation
-    const roles = ["Data Scientist", "Machine Learning Engineer", "AI Engineer"];
+    const roles = ["Full Stack AI Developer", "AI Engineer", "Machine Learning Engineer"];
     let roleIndex = 0, charIndex = 0;
     const roleTextElement = document.getElementById('role-text');
     function typeRole() { if(!roleTextElement) return; if (charIndex < roles[roleIndex].length) { roleTextElement.textContent += roles[roleIndex].charAt(charIndex++); setTimeout(typeRole, 100); } else { setTimeout(eraseRole, 2000); } }
@@ -450,7 +533,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openModal = (projectIndex) => {
         const project = projectsData[projectIndex];
         let galleryHtml = `<div id="media-viewer" class="mb-4 rounded-lg overflow-hidden bg-black"></div><div id="thumbnail-strip" class="flex gap-2 justify-center flex-wrap"></div>`;
-        modalContent.innerHTML = `<button class="absolute top-4 right-6 text-slate-400 hover:text-white text-3xl z-10" onclick="closeModal()">&times;</button>${galleryHtml}<div class="px-1 mt-6"><h2 class="text-3xl font-bold text-white mb-2">${project.title}</h2><p class="text-indigo-300 mb-6">${project.description}</p><h4 class="text-lg font-semibold text-white mb-2">Key Achievements:</h4><ul class="list-none space-y-2 mb-6">${project.details.map(detail => `<li class="flex items-start text-slate-300"><span class="text-indigo-400 mr-3 mt-1">▪</span><div class="flex-1">${detail}</div></li>`).join('')}</ul><h4 class="text-lg font-semibold text-white mb-3">Technologies Used:</h4><div class="flex flex-wrap gap-2">${project.skills.map(skill => `<span class="tag rounded-md px-3 py-1 text-sm">${skill}</span>`).join('')}</div></div>`;
+        const repoLinks = [project.githubRepo, project.githubRepoExtra].filter(Boolean).map((url, i) => {
+            const label = project.githubRepoExtra && i === 1 ? 'Frontend repo' : 'GitHub';
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-sky-400 text-sm font-medium">${label} →</a>`;
+        }).join('<span class="text-slate-600 mx-2">·</span>');
+        const repoBlock = repoLinks ? `<div class="flex flex-wrap items-center gap-1 mb-4">${repoLinks}</div>` : '';
+        modalContent.innerHTML = `<button class="absolute top-4 right-6 text-slate-400 hover:text-white text-3xl z-10" onclick="closeModal()">&times;</button>${galleryHtml}<div class="px-1 mt-6"><h2 class="text-3xl font-bold text-white mb-2">${project.title}</h2>${repoBlock}<p class="text-indigo-300 mb-6">${project.description}</p><h4 class="text-lg font-semibold text-white mb-2">Key Achievements:</h4><ul class="list-none space-y-2 mb-6">${project.details.map(detail => `<li class="flex items-start text-slate-300"><span class="text-indigo-400 mr-3 mt-1">▪</span><div class="flex-1">${detail}</div></li>`).join('')}</ul><h4 class="text-lg font-semibold text-white mb-3">Technologies Used:</h4><div class="flex flex-wrap gap-2">${project.skills.map(skill => `<span class="tag rounded-md px-3 py-1 text-sm">${skill}</span>`).join('')}</div></div>`;
         populateGallery(projectIndex);
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
@@ -478,90 +566,147 @@ document.addEventListener('DOMContentLoaded', () => {
     window.switchMedia = (mediaIndex, projectIndex) => {
         const mediaItem = projectsData[projectIndex].media[mediaIndex];
         const viewer = document.getElementById('media-viewer');
-        viewer.innerHTML = `<img src="${mediaItem.url}" alt="Project media" class="w-full h-auto max-h-[50vh] object-contain" onerror="this.onerror=null;this.src='https://placehold.co/1080x720/1e1b4b/c4b5fd?text=Error+Loading+Image';">`;
+        viewer.innerHTML = `<img src="${mediaItem.url}" alt="Project media" loading="lazy" class="w-full h-auto max-h-[50vh] object-contain" onerror="this.onerror=null;this.src='https://placehold.co/1080x720/1e1b4b/c4b5fd?text=Error+Loading+Image';">`;
         document.querySelectorAll('#thumbnail-strip .thumbnail').forEach((thumb, i) => thumb.classList.toggle('active', i == mediaIndex));
     };
     window.onclick = (event) => { if (event.target == modal) closeModal(); };
 
-    // Blog interactions
-    const blogPostsContainer = document.getElementById('blog-posts-container');
-    const blogFiltersContainer = document.getElementById('blog-filters');
-    const recentPostsContainer = document.getElementById('recent-posts-container');
-
-    const renderBlogPosts = (filter = 'All') => {
-        blogPostsContainer.innerHTML = '';
-        const filteredPosts = filter === 'All' ? blogPostsData : blogPostsData.filter(p => p.tags.includes(filter));
-        filteredPosts.forEach((post, index) => {
-            const article = document.createElement('article');
-            article.className = 'card-bg p-8 rounded-2xl';
-            article.innerHTML = `
-                <img src="${post.image}" alt="${post.title}" class="rounded-lg mb-6 w-full h-64 object-cover">
-                <div class="flex flex-wrap gap-2 mb-4">
-                    ${post.tags.map(tag => `<span class="tag rounded-md px-2 py-1 text-xs">${tag}</span>`).join('')}
-                </div>
-                <h3 class="text-2xl font-bold text-white mb-2">${post.title}</h3>
-                <p class="text-sm text-slate-400 mb-4">Posted on ${post.date}</p>
-                <div id="blog-content-${index}" class="prose-custom text-slate-400 blog-content-truncated">
-                    ${post.content}
-                </div>
-                <button class="read-more-btn text-indigo-400 hover:text-indigo-300 mt-4 text-sm font-semibold" data-post-index="${index}">Read More</button>
-            `;
-            blogPostsContainer.appendChild(article);
-        });
-        hljs.highlightAll(); // Highlight code snippets (even if no code, still good practice)
-        
-        // Add event listeners for "Read More" buttons
-        document.querySelectorAll('.read-more-btn').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const postIndex = e.target.dataset.postIndex;
-                const contentDiv = document.getElementById(`blog-content-${postIndex}`);
-                contentDiv.classList.toggle('blog-content-truncated');
-                contentDiv.classList.toggle('blog-content-expanded');
-                e.target.textContent = contentDiv.classList.contains('blog-content-truncated') ? 'Read More' : 'Read Less';
-            });
-        });
+    const listSection = (title, items) => {
+        if (!items?.length) return '';
+        return `<h4 class="text-lg font-semibold text-white mt-6 mb-2">${title}</h4><ul class="list-none space-y-2 mb-4">${items.map(item => `<li class="flex items-start text-slate-300 text-sm"><span class="text-indigo-400 mr-3 mt-1">▪</span><span>${item}</span></li>`).join('')}</ul>`;
     };
-    
-    const renderBlogFilters = () => {
-        const allTags = ['All', ...new Set(blogPostsData.flatMap(p => p.tags))].sort(); // Sort tags alphabetically
-        blogFiltersContainer.innerHTML = allTags.map(tag => 
-            `<button class="blog-tag-filter tag px-4 py-2 rounded-lg ${tag === 'All' ? 'active' : ''}" data-filter="${tag}">${tag}</button>`
-        ).join('');
-        
-        blogFiltersContainer.querySelectorAll('.blog-tag-filter').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const filter = e.target.dataset.filter;
-                blogFiltersContainer.querySelector('.active').classList.remove('active');
-                e.target.classList.add('active');
-                renderBlogPosts(filter);
-            });
+
+    window.showProductionSystemModal = (proj) => {
+        modalContent.innerHTML = `
+            <button class="absolute top-4 right-6 text-slate-400 hover:text-white text-3xl z-10" onclick="closeModal()">&times;</button>
+            <div class="px-1">
+                <span class="text-xs font-semibold text-accent uppercase tracking-wide">Production · Rank #${proj.rank}</span>
+                <p class="text-sm text-slate-400 mt-1">${proj.company} · ${proj.period}</p>
+                <h2 class="text-3xl font-bold text-white mt-2 mb-1">${proj.title}</h2>
+                <p class="text-indigo-300 mb-4">${proj.subtitle}</p>
+                <p class="text-slate-300 text-sm mb-4">${proj.summary}</p>
+                <p class="text-slate-400 text-sm mb-4">${proj.description}</p>
+                <h4 class="text-lg font-semibold text-white mb-2">Tech Stack</h4>
+                <p class="text-slate-400 text-sm mb-4">${proj.stack}</p>
+                ${listSection('Architecture', proj.architecture)}
+                ${listSection('Infrastructure', proj.infrastructure)}
+                ${listSection('Highlights', proj.highlights)}
+                ${listSection('Impact', proj.impact)}
+                <h4 class="text-lg font-semibold text-white mt-4 mb-2">Technologies</h4>
+                <div class="flex flex-wrap gap-2">${proj.tags.map(tag => `<span class="tag rounded-md px-3 py-1 text-sm">${tag}</span>`).join('')}</div>
+            </div>`;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    };
+
+    const renderProductionSystems = () => {
+        const grid = document.getElementById('production-systems-grid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        [...productionSystemsData].sort((a, b) => a.rank - b.rank).forEach((proj) => {
+            const card = document.createElement('article');
+            card.className = 'production-card card-bg rounded-2xl flex flex-col overflow-hidden cursor-pointer transform hover:-translate-y-2 transition-transform duration-300';
+            card.innerHTML = `
+                <div class="p-6 flex flex-col flex-grow">
+                    <span class="text-xs font-bold text-accent mb-2">#${String(proj.rank).padStart(2, '0')}</span>
+                    <h3 class="text-xl font-bold text-white mb-1">${proj.title}</h3>
+                    <p class="text-sm text-indigo-300 mb-3">${proj.subtitle}</p>
+                    <p class="text-slate-400 text-sm mb-4 flex-grow">${proj.summary}</p>
+                    <div class="flex flex-wrap gap-2 mt-auto">${proj.tags.slice(0, 4).map(tag => `<span class="tag rounded-md px-2 py-1 text-xs">${tag}</span>`).join('')}</div>
+                </div>`;
+            card.setAttribute('role', 'button');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', `${proj.title}. Click for technical details.`);
+            const open = () => showProductionSystemModal(proj);
+            card.addEventListener('click', open);
+            card.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+            grid.appendChild(card);
         });
     };
 
-    const renderRecentPosts = () => {
-        recentPostsContainer.innerHTML = '';
-        // Get the top 3 most recent posts (already sorted by date in data)
-        const recentPosts = blogPostsData.slice(0, 3);   
-        recentPosts.forEach(post => {
-            const postLink = document.createElement('a');
-            postLink.href = "#blog"; // Link to the blog section
-            postLink.className = "block card-bg p-4 rounded-lg hover:bg-slate-800 transition-colors";
-            postLink.innerHTML = `
-                <p class="text-sm font-semibold text-white">${post.title}</p>
-                <p class="text-xs text-slate-400">${post.date}</p>
-            `;
-            recentPostsContainer.appendChild(postLink);
-        });
-    };
+    renderPlaygroundApps();
+    renderProductionSystems();
+    renderTechnicalNotes();
+    renderNotesQuickLinks();
 
-    renderBlogFilters();
-    renderBlogPosts();
-    renderRecentPosts(); // Render recent posts on load
-    renderPlaygroundApps(); // Render playground apps on load
-
-    // Q&A and Poll interactions
+    // Ask Me Anything — delivers to your inbox via FormSubmit
     const commentForm = document.getElementById('comment-form');
-    commentForm.addEventListener('submit', (e) => { e.preventDefault(); e.target.reset(); /* Replaced alert with console.log for Canvas environment */ console.log("Thank you! Your question has been submitted."); });
+    const amaStatus = document.getElementById('ama-form-status');
+    const amaSubmitBtn = document.getElementById('comment-submit-btn');
+
+    const showAmaStatus = (message, isError = false) => {
+        if (!amaStatus) return;
+        amaStatus.textContent = message;
+        amaStatus.classList.remove('hidden', 'text-green-400', 'text-red-400');
+        amaStatus.classList.add(isError ? 'text-red-400' : 'text-green-400');
+    };
+
+    if (commentForm) {
+        commentForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const honey = commentForm.querySelector('[name="_honey"]');
+            if (honey?.value) return;
+
+            const name = document.getElementById('comment-name')?.value.trim();
+            const contact = document.getElementById('comment-contact')?.value.trim();
+            const message = document.getElementById('comment-text')?.value.trim();
+            if (!name || !contact || !message) {
+                showAmaStatus('Please fill in your name, how to reach you, and your question.', true);
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('How to reach you', contact);
+            formData.append('message', message);
+            formData.append('_subject', `Portfolio AMA from ${name}`);
+            if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact)) {
+                formData.append('_replyto', contact);
+            }
+            formData.append('_captcha', 'false');
+            formData.append('_template', 'table');
+
+            const originalLabel = amaSubmitBtn?.textContent || 'Submit';
+            if (amaSubmitBtn) {
+                amaSubmitBtn.disabled = true;
+                amaSubmitBtn.textContent = 'Sending…';
+            }
+            showAmaStatus('Sending your question…', false);
+            amaStatus?.classList.remove('text-green-400');
+            amaStatus?.classList.add('text-slate-400');
+
+            try {
+                const response = await fetch(FORM_SUBMIT_ENDPOINT, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { Accept: 'application/json' }
+                });
+                let payload = {};
+                try {
+                    payload = await response.json();
+                } catch {
+                    payload = {};
+                }
+                const ok = response.ok && String(payload.success).toLowerCase() === 'true';
+                if (ok) {
+                    commentForm.reset();
+                    showAmaStatus('Thanks! Your message was sent—I’ll get back to you soon.', false);
+                } else {
+                    const hint = payload.message
+                        ? String(payload.message)
+                        : `Could not send. Email me at ${CONTACT_EMAIL}`;
+                    showAmaStatus(hint, true);
+                }
+            } catch {
+                showAmaStatus(`Network error. Email me directly at ${CONTACT_EMAIL}`, true);
+            } finally {
+                if (amaSubmitBtn) {
+                    amaSubmitBtn.disabled = false;
+                    amaSubmitBtn.textContent = originalLabel;
+                }
+            }
+        });
+    }
     const pollOptions = document.querySelectorAll('.poll-option');
     pollOptions.forEach(option => { option.addEventListener('click', () => { pollOptions.forEach(opt => { opt.disabled = true; opt.classList.add('opacity-50'); }); option.classList.add('bg-indigo-500'); document.getElementById('poll-feedback').classList.remove('hidden'); }); });
 
@@ -578,5 +723,62 @@ document.addEventListener('DOMContentLoaded', () => {
     function animateParticles() { requestAnimationFrame(animateParticles); ctx.clearRect(0, 0, innerWidth, innerHeight); particlesArray.forEach(p => p.update()); connectParticles(); }
     function connectParticles() { let opacityValue = 1; for (let a = 0; a < particlesArray.length; a++) { for (let b = a; b < particlesArray.length; b++) { let distance = Math.hypot(particlesArray[a].x - particlesArray[b].x, particlesArray[a].y - particlesArray[b].y); if (distance < 120) { opacityValue = 1 - (distance / 120); ctx.strokeStyle = `rgba(167, 139, 250, ${opacityValue * 0.3})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(particlesArray[a].x, particlesArray[a].y); ctx.lineTo(particlesArray[b].x, particlesArray[b].y); ctx.stroke(); } } } }
     resizeHandler();
-    animateParticles();
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion) animateParticles();
+
+    // Resume viewer modal (PDF.js — plain page view, no browser PDF toolbar)
+    const resumeModal = document.getElementById('resume-modal');
+    const resumePages = document.getElementById('resume-pdf-pages');
+    const resumeLoading = document.getElementById('resume-loading');
+    const RESUME_URL = 'AayushResume.pdf';
+    let resumeRendered = false;
+
+    const renderResumePdf = async () => {
+        if (!window.pdfjsLib || !resumePages) return;
+        if (resumeRendered) return;
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        try {
+            resumeLoading.style.display = 'block';
+            resumePages.innerHTML = '';
+            const pdf = await pdfjsLib.getDocument(RESUME_URL).promise;
+            const containerWidth = resumePages.clientWidth || 700;
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                const page = await pdf.getPage(pageNum);
+                const baseViewport = page.getViewport({ scale: 1 });
+                const scale = Math.min(2, (containerWidth - 8) / baseViewport.width);
+                const viewport = page.getViewport({ scale });
+                const canvas = document.createElement('canvas');
+                canvas.width = viewport.width;
+                canvas.height = viewport.height;
+                resumePages.appendChild(canvas);
+                await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+            }
+            resumeRendered = true;
+        } catch (err) {
+            resumePages.innerHTML = '<p class="resume-loading">Unable to load resume. Use Download instead.</p>';
+            console.error('Resume PDF load failed:', err);
+        } finally {
+            resumeLoading.style.display = 'none';
+        }
+    };
+
+    const openResumeModal = () => {
+        resumeModal.hidden = false;
+        resumeModal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        requestAnimationFrame(() => requestAnimationFrame(() => renderResumePdf()));
+    };
+    const closeResumeModal = () => {
+        resumeModal.style.display = 'none';
+        resumeModal.hidden = true;
+        document.body.style.overflow = 'auto';
+    };
+    document.getElementById('view-resume-btn')?.addEventListener('click', openResumeModal);
+    document.getElementById('view-resume-contact-btn')?.addEventListener('click', openResumeModal);
+    document.getElementById('close-resume-modal')?.addEventListener('click', closeResumeModal);
+    resumeModal?.addEventListener('click', (e) => { if (e.target === resumeModal) closeResumeModal(); });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && resumeModal && !resumeModal.hidden) closeResumeModal();
+    });
 });
