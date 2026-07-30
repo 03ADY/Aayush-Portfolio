@@ -33,7 +33,7 @@ Open `index.html` in your browser, or use a local server (e.g. Live Server in VS
 
 - **Email:** aayushdyadav2003@gmail.com
 - **GitHub:** [github.com/03ADY](https://github.com/03ADY)
-- **Resume:** [AayushResume.pdf](https://github.com/03ADY/Aayush-Portfolio/blob/main/AayushResume.pdf)
+- **Resume:** [Resume.pdf](https://github.com/03ADY/Aayush-Portfolio/blob/main/Resume.pdf)
 
 ## License
 

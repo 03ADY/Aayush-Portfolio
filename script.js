@@ -730,7 +730,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const resumeModal = document.getElementById('resume-modal');
     const resumePages = document.getElementById('resume-pdf-pages');
     const resumeLoading = document.getElementById('resume-loading');
-    const RESUME_URL = 'AayushResume.pdf';
+    const RESUME_URL = 'Resume.pdf';
     let resumeRendered = false;
 
     const renderResumePdf = async () => {
